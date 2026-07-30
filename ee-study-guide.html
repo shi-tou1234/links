@@ -1,9 +1,9 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="zh-CN">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>鐢靛瓙淇℃伅甯哥敤缃戦〉閾炬帴鎸囧崡</title>
+  <title>电子信息常用网页链接指南</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700&display=swap" rel="stylesheet" />
@@ -18,6 +18,7 @@
       --shadow-color: rgba(139, 69, 19, 0.12);
       --selection-color: #fae2b5;
     }
+
     [data-theme="dark"] {
       --bg-color: #1a1612;
       --text-color: #e8ddd0;
@@ -28,8 +29,11 @@
       --shadow-color: rgba(0, 0, 0, 0.3);
       --selection-color: #44361a;
     }
+
     * { box-sizing: border-box; }
+
     html { scroll-behavior: smooth; }
+
     body {
       margin: 0;
       background-color: var(--bg-color);
@@ -37,14 +41,21 @@
       font-family: "Noto Serif SC", "Times New Roman", "STZhongsong", "Songti SC", serif;
       line-height: 1.6;
     }
-    ::selection { background-color: var(--selection-color); color: var(--text-color); }
+
+    ::selection {
+      background-color: var(--selection-color);
+      color: var(--text-color);
+    }
+
     a { color: var(--link-color); text-decoration: none; }
+
     .link-line {
       color: inherit;
       text-decoration: none;
       position: relative;
       display: inline-block;
     }
+
     .link-line::before {
       content: "";
       position: absolute;
@@ -58,8 +69,14 @@
       transform-origin: right;
       transform: scaleX(1);
     }
+
     .link-line:hover { color: var(--link-color); }
-    .link-line:hover::before { transform-origin: right; transform: scaleX(0); }
+
+    .link-line:hover::before {
+      transform-origin: right;
+      transform: scaleX(0);
+    }
+
     .page-wrapper {
       position: relative;
       min-height: 100vh;
@@ -69,6 +86,7 @@
         radial-gradient(circle at 55% 72%, rgba(120, 90, 50, 0.09), transparent 28%),
         var(--bg-color);
     }
+
     [data-theme="dark"] .page-wrapper {
       background:
         radial-gradient(circle at 20% 10%, rgba(232, 221, 208, 0.07), transparent 28%),
@@ -76,12 +94,14 @@
         radial-gradient(circle at 55% 72%, rgba(167, 139, 108, 0.07), transparent 28%),
         var(--bg-color);
     }
+
     .page-particles {
       position: fixed;
       inset: 0;
       pointer-events: none;
       z-index: 0;
     }
+
     .top-bar {
       position: sticky;
       top: 0;
@@ -90,32 +110,37 @@
       background: color-mix(in srgb, var(--bg-color) 82%, transparent);
       border-bottom: 1px solid var(--button-border-color);
     }
+
     .cover-section {
       position: relative;
       z-index: 10;
-      max-width: 900px;
+      max-width: 860px;
       margin: 0 auto;
       text-align: center;
-      padding: 62px 18px 22px;
+      padding: 56px 18px 18px;
     }
+
     .cover-section h1 {
       margin: 0;
       font-size: clamp(26px, 4.2vw, 38px);
       font-weight: 700;
     }
+
     .cover-cursor {
       display: inline-block;
       color: var(--link-color);
       animation: cursorBlink 1s steps(1) infinite;
     }
+
     @keyframes cursorBlink {
       0%, 48% { opacity: 1; }
       49%, 100% { opacity: 0; }
     }
+
     .nav-card {
       position: relative;
-      width: 340px;
-      height: 220px;
+      width: 320px;
+      height: 210px;
       border-radius: 10px;
       display: flex;
       flex-direction: column;
@@ -123,127 +148,104 @@
       justify-content: center;
       gap: 0.75rem;
       overflow: hidden;
+      transition: all 0.6s cubic-bezier(0.23, 1, 0.320, 1);
       text-decoration: none;
       cursor: pointer;
       color: #fff;
-      transform: translateY(18px);
-      opacity: 0;
-      transition: transform 0.6s cubic-bezier(0.23, 1, 0.320, 1), opacity 0.6s ease, box-shadow 0.6s ease;
     }
-    .nav-card.is-visible { transform: translateY(0); opacity: 1; }
-    .nav-card:hover {
-      transform: rotate(-5deg) scale(1.08);
-      box-shadow: 0 18px 28px rgba(0, 0, 0, 0.22);
-    }
-    .nav-card-bg {
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(-45deg, hsl(235, 25%, 58%) 0%, hsl(275, 22%, 52%) 100%);
-      transition: transform 0.7s cubic-bezier(0.23, 1, 0.320, 1);
-      z-index: 0;
-    }
-    .nav-card:hover .nav-card-bg { transform: scale(1.08); }
+
     .nav-card-icon {
-      position: relative;
-      z-index: 1;
       display: flex;
       align-items: center;
       justify-content: center;
-      width: 54px;
-      height: 54px;
-      border-radius: 14px;
       color: #fff;
-      background: rgba(255, 255, 255, 0.14);
-      backdrop-filter: blur(6px);
-      transition: transform 0.6s cubic-bezier(0.23, 1, 0.320, 1), opacity 0.5s ease;
-      box-shadow: 0 6px 14px rgba(0, 0, 0, 0.18);
+      transition: all 0.6s cubic-bezier(0.23, 1, 0.320, 1);
+      filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.15));
     }
+
     .nav-card-label {
-      position: relative;
-      z-index: 1;
-      font-size: 1.15rem;
+      font-size: 1.1rem;
       font-weight: 600;
       color: #fff;
-      text-shadow: 0 1px 3px rgba(0, 0, 0, 0.25);
-      transition: transform 0.6s cubic-bezier(0.23, 1, 0.320, 1), opacity 0.5s ease;
+      transition: all 0.6s cubic-bezier(0.23, 1, 0.320, 1);
+      text-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
     }
+
+    .nav-card:hover {
+      transform: rotate(-5deg) scale(1.1);
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+    }
+
     .nav-card:hover .nav-card-icon,
     .nav-card:hover .nav-card-label {
-      transform: scale(0);
+      scale: 0;
       opacity: 0;
     }
+
     .nav-card__content {
       position: absolute;
-      inset: 0;
-      z-index: 1;
-      padding: 22px;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%) rotate(-45deg);
+      width: 100%;
+      height: 100%;
+      padding: 20px;
+      box-sizing: border-box;
+      background-color: var(--bg-color);
+      opacity: 0;
+      transition: all 0.6s cubic-bezier(0.23, 1, 0.320, 1);
       display: flex;
       flex-direction: column;
       justify-content: center;
-      gap: 10px;
-      background-color: var(--bg-color);
       color: var(--text-color);
-      transform: translate(-50%, -50%) rotate(-45deg) scale(0.7);
-      left: 50%;
-      top: 50%;
-      opacity: 0;
-      transition: all 0.65s cubic-bezier(0.23, 1, 0.320, 1);
-      border: 1px solid var(--button-border-color);
     }
+
     .nav-card:hover .nav-card__content {
-      transform: translate(-50%, -50%) rotate(0deg) scale(1);
+      transform: translate(-50%, -50%) rotate(0deg);
       opacity: 1;
     }
+
     .nav-card__title {
       margin: 0;
-      font-size: 22px;
+      font-size: 24px;
       font-weight: 700;
       color: var(--text-color);
     }
+
     .nav-card__description {
-      margin: 0;
+      margin: 10px 0 0;
       font-size: 14px;
       color: var(--text-color);
-      opacity: 0.8;
-      line-height: 1.55;
+      opacity: 0.7;
+      line-height: 1.4;
     }
+
     .nav-card-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
-      gap: 28px;
-      padding: 1rem 1rem 2rem;
-      justify-items: center;
-    }
-    .filter-bar {
       display: flex;
       flex-wrap: wrap;
-      gap: 10px;
-      align-items: center;
       justify-content: center;
-      margin-bottom: 20px;
-      transform: translateY(16px);
-      opacity: 0;
-      transition: transform 0.7s cubic-bezier(0.23, 1, 0.320, 1), opacity 0.7s ease;
+      gap: 2.5rem;
+      padding: 1rem 1rem 2rem;
     }
-    .filter-bar.is-visible { transform: translateY(0); opacity: 1; }
+
     .filter-chip {
       border: 1px solid var(--button-border-color);
       background: var(--postcard-bg-color);
       color: var(--text-color);
       border-radius: 999px;
-      padding: 8px 14px;
+      padding: 7px 13px;
       cursor: pointer;
-      transition: background 0.2s ease, border-color 0.2s ease, color 0.2s ease, transform 0.2s ease;
+      transition: background 0.2s ease, border-color 0.2s ease, color 0.2s ease;
     }
+
     .filter-chip:hover, .filter-chip.active {
       background: var(--button-hover-color);
       border-color: var(--link-color);
       color: var(--link-color);
     }
-    .filter-chip:active { transform: scale(0.97); }
+
     .search-input {
       width: 100%;
-      max-width: 280px;
       border: 1px solid var(--button-border-color);
       background: var(--postcard-bg-color);
       color: var(--text-color);
@@ -252,24 +254,28 @@
       outline: none;
       transition: box-shadow 0.2s ease, border-color 0.2s ease;
     }
+
     .search-input:focus {
       border-color: var(--link-color);
       box-shadow: 0 0 0 4px rgba(139, 69, 19, 0.12);
     }
+
     [data-theme="dark"] .search-input:focus {
       box-shadow: 0 0 0 4px rgba(224, 160, 96, 0.14);
     }
+
     .pill {
       display: inline-flex;
       align-items: center;
       gap: 6px;
       border: 1px solid var(--button-border-color);
       border-radius: 999px;
-      padding: 4px 11px;
+      padding: 3px 10px;
       font-size: 12px;
       color: var(--text-color);
-      background: color-mix(in srgb, var(--bg-color) 92%, transparent);
+      opacity: 0.85;
     }
+
     .back-top {
       position: fixed;
       right: 18px;
@@ -288,8 +294,10 @@
       box-shadow: 0 6px 14px var(--shadow-color);
       transition: transform 0.2s ease, background 0.2s ease;
     }
+
     .back-top:hover { transform: translateY(-2px); }
     .back-top:active { transform: scale(0.96); }
+
     .empty-hint {
       display: none;
       text-align: center;
@@ -297,22 +305,15 @@
       color: var(--text-color);
       opacity: 0.75;
     }
-    .page-footer {
-      position: relative;
-      z-index: 10;
-      text-align: center;
-      padding: 18px 14px 24px;
-      color: var(--text-color);
-      opacity: 0;
-      transform: translateY(12px);
-      transition: opacity 0.7s ease, transform 0.7s cubic-bezier(0.23, 1, 0.320, 1);
-      font-size: 14px;
+
+    @media (max-width: 360px) {
+      .nav-card {
+        width: 100%;
+        max-width: 320px;
+        height: 190px;
+      }
     }
-    .page-footer.is-visible { opacity: 0.72; transform: translateY(0); }
-    @media (max-width: 420px) {
-      .nav-card { width: 100%; max-width: 340px; height: 210px; }
-      .nav-card-grid { grid-template-columns: 1fr; }
-    }
+
     @media (prefers-reduced-motion: reduce) {
       html { scroll-behavior: auto; }
       *, *::before, *::after {
@@ -321,8 +322,8 @@
         transition-duration: 0.01ms !important;
         scroll-behavior: auto !important;
       }
-      .nav-card, .filter-bar, .page-footer { transform: none; opacity: 1; }
     }
+
     .sr-only {
       position: absolute;
       width: 1px;
@@ -339,102 +340,154 @@
 <body>
   <div class="page-wrapper">
     <canvas id="pageParticles" class="page-particles" aria-hidden="true"></canvas>
+
     <header class="top-bar">
-      <div style="max-width: 1100px; margin: 0 auto; padding: 12px 14px; display: flex; align-items: center; justify-content: space-between; gap: 14px; flex-wrap: wrap;">
+      <div style="max-width: 1100px; margin: 0 auto; padding: 10px 14px; display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap;">
         <div style="display: flex; align-items: center; gap: 10px;">
-          <span style="display: inline-grid; width: 32px; height: 32px; place-items: center; border-radius: 9px; color: #fff; background: linear-gradient(-45deg, hsl(28, 55%, 44%) 0%, hsl(40, 50%, 52%) 100%);">EE</span>
-          <span style="font-weight: 700; font-size: 15px;">鐢靛瓙淇℃伅甯哥敤璧勬簮</span>
+          <span style="display: inline-grid; width: 30px; height: 30px; place-items: center; border-radius: 8px; color: #fff; background: linear-gradient(-45deg, hsl(28, 55%, 44%) 0%, hsl(40, 50%, 52%) 100%);">EE</span>
+          <span style="font-weight: 700;">电子信息常用资源</span>
         </div>
         <div style="display: flex; align-items: center; gap: 10px;">
-          <label class="sr-only" for="siteSearch">鎼滅储璧勬簮</label>
-          <input id="siteSearch" class="search-input" placeholder="鎼滅储绔欑偣銆佹弿杩版垨鍒嗙被..." />
-          <button id="themeToggle" class="filter-chip" title="鍒囨崲涓婚" aria-label="鍒囨崲娣辫壊/娴呰壊涓婚">馃寳 涓婚</button>
+          <label class="sr-only" for="siteSearch">搜索资源</label>
+          <input id="siteSearch" class="search-input" placeholder="搜索站点、描述或分类..." style="width: min(100%, 260px);" />
+          <button id="themeToggle" class="filter-chip" title="切换主题" aria-label="切换深色/浅色主题">🌗 主题</button>
         </div>
       </div>
     </header>
+
     <section class="cover-section">
-      <h1>鐢靛瓙淇℃伅甯哥敤缃戦〉閾炬帴鎸囧崡</h1>
-      <p style="margin: 12px auto 0; max-width: 720px; color: var(--text-color); opacity: 0.82; font-size: 15px;">
-        淇濈暀鏇村父鐢ㄧ殑绔欑偣锛岄噸鐐硅鐩栬姱鐗囪祫鏂欍€丒DA 宸ュ叿銆佽绋嬪涔犮€佸紑婧愰」鐩€佺珵璧涖€佹眰鑱屽拰宸ョ▼绀惧尯銆?
+      <h1>电子信息常用网页链接指南</h1>
+      <p style="margin: 10px auto 0; max-width: 640px; color: var(--text-color); opacity: 0.82;">
+        一份面向电子信息学生的常用国内站点索引，尽量选能直接访问、适合课设、竞赛、买件、查数据和写报告的方向。
       </p>
-      <p style="margin: 14px auto 0; color: var(--text-color); opacity: 0.72; font-size: 14px;">
-        <span id="typewriterTarget">褰撳墠宸叉暣鐞嗘牳蹇冨父鐢ㄧ珯鐐癸紝鍙寜鍒嗙被绛涢€夊拰鎼滅储</span><span class="cover-cursor" aria-hidden="true">|</span>
+      <p style="margin: 14px auto 0; color: var(--text-color); opacity: 0.7;">
+        <span id="typewriterTarget">当前共整理多个常用站点，按分类整理，可直接跳转使用</span><span class="cover-cursor" aria-hidden="true">|</span>
       </p>
     </section>
-    <main style="position: relative; z-index: 10; max-width: 1180px; margin: 0 auto; padding: 18px 14px 120px;">
-      <section class="filter-bar" data-reveal>
-        <button class="filter-chip active" data-filter="all">鍏ㄩ儴</button>
-        <button class="filter-chip" data-filter="components">涔颁欢/鍟嗗煄</button>
-        <button class="filter-chip" data-filter="datasheet">鑺墖/鍨嬪彿</button>
-        <button class="filter-chip" data-filter="pcb">鍘熺悊鍥?PCB</button>
-        <button class="filter-chip" data-filter="learn">瀛︿範/璇剧▼</button>
-        <button class="filter-chip" data-filter="tools">EDA/宸ュ叿</button>
-        <button class="filter-chip" data-filter="community">绀惧尯/璧勮</button>
-        <button class="filter-chip" data-filter="competition">绔炶禌/瀹為獙瀹?/button>
-        <button class="filter-chip" data-filter="job">鑰冪爺/姹傝亴</button>
+
+    <main style="position: relative; z-index: 10; max-width: 1100px; margin: 0 auto; padding: 18px 14px 120px;">
+      <section style="display: flex; flex-wrap: wrap; gap: 10px; align-items: center; justify-content: center; margin-bottom: 18px;">
+        <button class="filter-chip active" data-filter="all">全部</button>
+        <button class="filter-chip" data-filter="components">买件/常用商城</button>
+        <button class="filter-chip" data-filter="datasheet">Datasheet/型号</button>
+        <button class="filter-chip" data-filter="pcb">原理图/PCB/开源硬件</button>
+        <button class="filter-chip" data-filter="learn">学习/课程/视频</button>
+        <button class="filter-chip" data-filter="tools">EDA/仿真/软件工具</button>
+        <button class="filter-chip" data-filter="community">社区/博客/资讯</button>
+        <button class="filter-chip" data-filter="competition">竞赛/实验室/作品</button>
+        <button class="filter-chip" data-filter="job">考研/求职/技能</button>
       </section>
-      <p id="emptyHint" class="empty-hint">娌℃湁鍖归厤鐨勭珯鐐癸紝璇曡瘯鏇寸煭鐨勫叧閿瘝鎴栧垏鎹㈠垎绫汇€?/p>
+
+      <p id="emptyHint" class="empty-hint">没有匹配的站点，试试更短的关键词或切换分类。</p>
+
       <div id="cardGrid" class="nav-card-grid"></div>
     </main>
-    <footer class="page-footer" data-reveal>
-      寤鸿鎸夎璁俱€佸疄楠屻€佺珵璧涘拰姹傝亴闃舵鏀惰棌锛屽苟瀹氭湡鏁寸悊鎴愯嚜宸辩殑甯哥敤瀵艰埅銆?
+
+    <footer style="position: relative; z-index: 10; text-align: center; padding: 18px 14px 24px; color: var(--text-color); opacity: 0.7; font-size: 14px;">
+      建议收藏常用站点，按自己当前课设、实验、竞赛和求职阶段分批整理。
     </footer>
-    <button id="backToTop" class="back-top" aria-label="鍥炲埌椤堕儴" title="鍥炲埌椤堕儴">
+
+    <button id="backToTop" class="back-top" aria-label="回到顶部" title="回到顶部">
       <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
         <polyline points="18 15 12 9 6 15"></polyline>
       </svg>
     </button>
   </div>
+
   <script>
-    const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     const links = [
-      { name: "CSDN", url: "https://www.csdn.net/", tags: ["community", "learn"], icon: "CS", description: "鏌?bug銆佹壘浠ｇ爜鐗囨銆佺湅宓屽叆寮?C++/閫氫俊绫绘枃绔犲拰瀹炴垬绗旇銆? },
-      { name: "鎺橀噾", url: "https://juejin.cn/", tags: ["community", "learn"], icon: "鎺?, description: "鐪嬪伐绋嬪寲銆佸墠绔€佸伐鍏烽摼銆佷骇鍝佸寲瀹炵幇鍜屾柊浜虹粌鎵嬫€濊矾銆? },
-      { name: "鐭ヤ箮", url: "https://www.zhihu.com/", tags: ["community", "learn"], icon: "鐭?, description: "鎼滀笓涓氶棶棰樸€佺珵璧涚粡楠屻€佹嫨涓氬拰鍏ラ棬璺緞璁ㄨ銆? },
-      { name: "Bilibili", url: "https://www.bilibili.com/", tags: ["learn"], icon: "B", description: "鐪嬪叕寮€璇俱€佺珵璧涚粡楠屻€佷华鍣ㄦ媶瑙ｃ€丒DA 瀹炴搷鍜岄」鐩紨绀恒€? },
-      { name: "GitHub", url: "https://github.com/", tags: ["community", "tools", "competition"], icon: "GH", description: "鎼滃紑婧愰」鐩€佺湅宸ョ▼缁撴瀯銆佸涔犱綔鍝佸拰鎵?idea銆? },
-      { name: "Gitee", url: "https://gitee.com/", tags: ["community", "tools"], icon: "G", description: "鎵樼璇剧▼椤圭洰銆佽剼鏈€佸皬宸ュ叿鍜屽浗鍐呭紑婧愬伐绋嬨€? },
-      { name: "灏忚姱鍗婂浣?, url: "https://www.xchip.cn/", tags: ["datasheet", "components"], icon: "鑺?, description: "鏌ヨ姱鐗囪祫鏂欍€佷腑鏂?datasheet銆佹浛浠ｆ枡鍜岄€夊瀷淇℃伅銆? },
-      { name: "绔嬪垱鍟嗗煄", url: "https://www.szlcsc.com/", tags: ["components", "pcb"], icon: "绔?, description: "涔板厓鍣ㄤ欢銆佹ā鍧椼€佸紑鍙戞澘锛屼互鍙?PCB 鎵撴牱/SMT 甯哥敤銆? },
-      { name: "鍢夌珛鍒?, url: "https://www.jlc.com/", tags: ["pcb", "components"], icon: "鍢?, description: "PCB 鎵撴牱銆丼MT銆丳CBA銆?D 鎵撳嵃锛岃璁惧拰灏忔壒閲忛兘甯哥敤銆? },
-      { name: "鍗庣鐢靛瓙", url: "https://www.hqew.com/", tags: ["components", "pcb"], icon: "鍗?, description: "鍏冨櫒浠跺晢鍩庡拰 PCB 鏈嶅姟杈冨叏锛屾柟渚夸粠鍘熺悊鍥惧埌鏉垮瓙銆? },
-      { name: "璐告辰鐢靛瓙", url: "https://www.mouser.cn/", tags: ["components", "datasheet"], icon: "M", description: "鏌ュ師鍘傝姱鐗囥€佸弬鑰冭璁″拰鍣ㄤ欢閫夊瀷璇存槑銆? },
-      { name: "ST 鎰忔硶鍗婂浣?, url: "https://www.st.com/", tags: ["datasheet", "competition"], icon: "ST", description: "鏌?STM32 瀹樻柟鎵嬪唽銆佸弬鑰冭璁°€佸伐鍏峰拰渚嬬▼棣栭€夈€? },
-      { name: "NXP 瀹樻柟", url: "https://www.nxp.com/", tags: ["datasheet", "competition"], icon: "NX", description: "鏌?i.MX銆並inetis銆佸皠棰戝拰姹借溅鐢靛瓙璧勬枡銆? },
-      { name: "鑻遍鍑?, url: "https://www.infineon.com/", tags: ["datasheet", "competition"], icon: "IF", description: "鏌ュ姛鐜囧櫒浠躲€侀┍鍔ㄥ拰鐢垫簮绠＄悊鏂规銆? },
-      { name: "鐟炶惃鐢靛瓙", url: "https://www.renesas.cn/", tags: ["datasheet", "competition"], icon: "鐟?, description: "鐪?MCU銆佹苯杞︾數瀛愬拰宸ヤ笟鎺у埗鏂规璧勬枡銆? },
-      { name: "绔嬪垱EDA", url: "https://lceda.cn/", tags: ["pcb", "tools"], icon: "EDA", description: "鍦ㄧ嚎鍘熺悊鍥惧拰 PCB 宸ュ叿锛岄€傚悎蹇€熷嚭璇剧▼璁捐鏉裤€? },
-      { name: "KiCad", url: "https://www.kicad.org/", tags: ["pcb", "tools"], icon: "K", description: "寮€婧?PCB 宸ュ叿锛岄€傚悎浠庡師鐞嗗浘鍒?PCB 鍏ㄦ祦绋嬬粌涔犮€? },
-      { name: "Multisim", url: "https://www.ni.com/multisim", tags: ["tools"], icon: "M", description: "閫傚悎鐢佃矾浠跨湡銆佹ā鐢?鏁扮數瀹為獙楠岃瘉鍜屾暀瀛︽紨绀恒€? },
-      { name: "Proteus", url: "https://www.labcenter.com/", tags: ["tools"], icon: "P", description: "閫傚悎鍗曠墖鏈轰豢鐪熴€佺畝鍗曠數璺獙璇佸拰鍏ラ棬瀹為獙銆? },
-      { name: "MATLAB", url: "https://www.mathworks.com/products/matlab.html", tags: ["tools"], icon: "MA", description: "閫傚悎淇″彿澶勭悊銆佹帶鍒剁郴缁熷拰绠楁硶浠跨湡缁冧範銆? },
-      { name: "Keil MDK", url: "https://www.keil.com/", tags: ["tools", "competition"], icon: "K", description: "閫傚悎 STM32 寮€鍙戝拰鍗曠墖鏈鸿绋嬪疄楠屼娇鐢ㄣ€? },
-      { name: "IAR EW", url: "https://www.iar.com/", tags: ["tools", "competition"], icon: "I", description: "閫傚悎宓屽叆寮忕紪璇戙€佽皟璇曞拰宸ョ▼绋冲畾鎬х粌涔犮€? },
-      { name: "VS Code", url: "https://code.visualstudio.com/", tags: ["tools"], icon: "VS", description: "閫傚悎鍐欎唬鐮併€佸仛鏂囨。銆佽繍琛岃剼鏈拰寮€鍙戝皬宸ュ叿銆? },
-      { name: "Git for Windows", url: "https://gitforwindows.org/", tags: ["tools"], icon: "G", description: "閫傚悎鏈湴鐗堟湰鎺у埗銆佽剼鏈鐞嗗拰宸ョ▼鍗忎綔涔犳儻鍏绘垚銆? },
-      { name: "姝ｇ偣鍘熷瓙", url: "https://www.alientek.com/", tags: ["learn", "competition"], icon: "姝?, description: "STM32 鍜?Linux 宓屽叆寮忓涔犺祫鏂欍€佷緥绋嬪拰鏉垮崱鍙傝€冦€? },
-      { name: "閲庣伀鐢靛瓙", url: "https://www.firebbs.cn/", tags: ["learn", "community"], icon: "閲?, description: "宓屽叆寮忓叆闂ㄣ€丷TOS銆丩inux 鍜岄」鐩疄鎴樼粡楠岄泦涓€? },
-      { name: "闊︿笢灞卞祵鍏ュ紡", url: "https://www.100ask.net/", tags: ["learn", "competition"], icon: "闊?, description: "宓屽叆寮?Linux銆侀┍鍔ㄥ拰椤圭洰瀹炴垬璇剧▼杈冪郴缁熴€? },
-      { name: "涓浗澶у MOOC", url: "https://www.icourse163.org/", tags: ["learn"], icon: "M", description: "閫傚悎琛ョ數璺€佷俊鍙枫€佸祵鍏ュ紡銆丳ython 鍜岄€氫俊绫诲熀纭€銆? },
-      { name: "瀛﹀爞鍦ㄧ嚎", url: "https://www.xuetangx.com/", tags: ["learn"], icon: "瀛?, description: "閫傚悎鐪嬮珮鏍″叕寮€璇惧拰鐢靛瓙鐩稿叧涓撲笟鍩虹璇俱€? },
-      { name: "娉板厠绉戞妧", url: "https://www.tek.com.cn/", tags: ["learn", "competition"], icon: "娉?, description: "鐪嬬ず娉㈠櫒銆佹帰澶村拰娴嬭瘯娴嬮噺璧勬枡銆? },
-      { name: "鏄痉绉戞妧", url: "https://www.keysight.com.cn/", tags: ["learn", "competition"], icon: "鏄?, description: "鐪嬪皠棰戙€佷华鍣ㄥ拰娴嬭瘯娴嬮噺璧勬枡銆? },
-      { name: "鏅簮绮剧數", url: "https://www.rigol.com.cn/", tags: ["learn", "competition"], icon: "鏅?, description: "鐪嬬ず娉㈠櫒銆佷俊鍙锋簮鍜屽浗浜т华鍣ㄨ祫鏂欍€? },
-      { name: "鍏ㄥ浗澶у鐢熺數瀛愯璁＄珵璧?, url: "http://www.nuedc-training.com.cn/", tags: ["competition"], icon: "鐢佃禌", description: "鐢靛瓙淇℃伅鏍稿績绔炶禌锛岄€傚悎鏌ヨ祫璁€佸煿璁拰浣滃搧鍙傝€冦€? },
-      { name: "鍏ㄥ浗澶у鐢熸櫤鑳芥苯杞︾珵璧?, url: "http://www.smartcar.org.cn/", tags: ["competition"], icon: "鏅鸿兘杞?, description: "閫傚悎鐪嬭溅妯℃柟妗堛€佷紶鎰熷櫒銆佽瑙夊拰绔炶禌缁忛獙銆? },
-      { name: "ACM/ICPC", url: "https://icpc.global/", tags: ["competition"], icon: "ACM", description: "閫傚悎鐪嬬▼搴忚璁＄珵璧涜鍒欍€佸尯鍩熻禌鍜岃缁冭祫婧愩€? },
-      { name: "RoboMaster 鏈虹敳澶у笀璧?, url: "https://www.robomaster.com/", tags: ["competition"], icon: "RM", description: "閫傚悎鐪嬫満鍣ㄤ汉銆佽瑙夈€佸祵鍏ュ紡鍜屽伐绋嬭俯鍧戠粡楠屻€? },
-      { name: "鍏ㄥ浗澶у鐢熸満鍣ㄤ汉澶ц禌", url: "http://www.robotcontest.cn/", tags: ["competition"], icon: "鏈哄櫒", description: "閫傚悎鐪嬫満鍣ㄤ汉鐩稿叧绔炶禌鍜岄」鐩疄鎴樼粡楠屻€? },
-      { name: "钃濇ˉ鏉?, url: "https://dasai.lanqiao.cn/", tags: ["competition"], icon: "钃?, description: "閫傚悎鐪嬪祵鍏ュ紡銆佽蒋浠剁被绔炶禌鍜岃缁冨唴瀹广€? },
-      { name: "璧涙蔼", url: "https://www.saikr.com/", tags: ["competition"], icon: "璧?, description: "閫傚悎鎵惧ぇ瀛︾敓绔炶禌銆佺鍒涙瘮璧涘拰椤圭洰瀹炶返鏈轰細銆? },
-      { name: "鐭ョ綉", url: "https://www.cnki.net/", tags: ["learn", "job"], icon: "鐭?, description: "閫傚悎鏌ヨ鏂囥€佸啓姣曡鍜屾暣鐞嗘枃鐚患杩般€? },
-      { name: "LeetCode", url: "https://leetcode.cn/", tags: ["learn", "job"], icon: "L", description: "閫傚悎鎵撳熀纭€銆佽ˉ绠楁硶鍜屽噯澶囩瑪璇曢潰璇曘€? },
-      { name: "鐗涘缃?, url: "https://www.nowcoder.com/", tags: ["learn", "job"], icon: "鐗?, description: "閫傚悎鐪嬫牎鎷涖€佺瑪璇曘€侀潰璇曞拰姹傝亴缁忛獙銆? },
-      { name: "鏋佸鏃堕棿", url: "https://time.geekbang.org/", tags: ["learn", "job"], icon: "鏋?, description: "閫傚悎鐪嬬郴缁熷寲涓撴爮鍜屽伐绋嬭繘闃惰绋嬨€? },
-      { name: "鑿滈笩鏁欑▼", url: "https://www.runoob.com/", tags: ["learn", "tools"], icon: "鑿?, description: "閫傚悎蹇€熷叆闂ㄨ瑷€銆佸伐鍏峰拰鍩虹姒傚康銆? },
-      { name: "MDN Web Docs", url: "https://developer.mozilla.org/", tags: ["learn", "tools"], icon: "M", description: "閫傚悎鏌ュ墠绔€佺綉缁滃拰 Web 寮€鍙戞潈濞佽祫鏂欍€? },
-      { name: "Stack Overflow", url: "https://stackoverflow.com/", tags: ["community", "learn"], icon: "S", description: "閫傚悎鏌ョ紪绋嬮棶棰樸€佹姤閿欏拰宸ョ▼瀹炵幇缁嗚妭銆? }
+      { name: "CSDN", url: "https://www.csdn.net/", tags: ["community", "learn"], icon: "CS", description: "查 bug、找代码片段、看嵌入式/C++/通信类文章和实战笔记。" },
+      { name: "博客园", url: "https://www.cnblogs.com/", tags: ["community", "learn"], icon: "博", description: "老牌技术博客平台，适合看工程实现和长期维护的项目记录。" },
+      { name: "掘金", url: "https://juejin.cn/", tags: ["community", "learn"], icon: "掘", description: "适合看前端、工程化、工具链、产品化实现和新人练手思路。" },
+      { name: "知乎", url: "https://www.zhihu.com/", tags: ["community", "learn"], icon: "知", description: "适合搜专业问题、择业、竞赛和入门路径的讨论。" },
+      { name: "Bilibili", url: "https://www.bilibili.com/", tags: ["learn"], icon: "B", description: "适合看公开课、竞赛经验、仪器拆解、EDA 实操和项目演示视频。" },
+      { name: "小芯半导体", url: "https://www.xchip.cn/", tags: ["datasheet", "components"], icon: "芯", description: "查芯片资料、中文 datasheet、替代料和选型信息比较方便。" },
+      { name: "立创商城", url: "https://www.szlcsc.com/", tags: ["components", "pcb"], icon: "立", description: "买电阻电容、模块、开发板和 PCB 打样、SMT 贴片常用。" },
+      { name: "得利电子", url: "https://www.ichunt.com/", tags: ["components", "datasheet"], icon: "得", description: "电子元器件商城，适合找被动元件、连接器和常用模块。" },
+      { name: "云汉芯城", url: "https://www.ickey.cn/", tags: ["components", "datasheet"], icon: "云", description: "元器件数据手册、采购和 BOM 配套查询常用。" },
+      { name: "唯样商城", url: "https://www.oneyac.com/", tags: ["components", "datasheet"], icon: "唯", description: "库存查询、型号检索和替代料选型比较直接。" },
+      { name: "嘉立创", url: "https://www.jlc.com/", tags: ["pcb", "components"], icon: "嘉", description: "PCB 打样、SMT、PCBA、3D 打印，做课设和量产小批量都很常用。" },
+      { name: "华秋电子", url: "https://www.hqew.com/", tags: ["components", "pcb"], icon: "华", description: "元器件商城和 PCB 服务都较全，适合从原理图到板子一站式推进。" },
+      { name: "贸泽电子", url: "https://www.mouser.cn/", tags: ["components", "datasheet"], icon: "M", description: "查原厂芯片、参考设计和器件选型说明很方便。" },
+      { name: "ST 意法半导体", url: "https://www.st.com/", tags: ["datasheet", "competition"], icon: "ST", description: "查 STM32 官方手册、参考设计、工具和例程首选。" },
+      { name: "NXP 官方", url: "https://www.nxp.com/", tags: ["datasheet", "competition"], icon: "NX", description: "查 i.MX、Kinetis、射频和汽车电子资料很全。" },
+      { name: "英飞凌 Infineon", url: "https://www.infineon.com/", tags: ["datasheet", "competition"], icon: "IF", description: "适合查功率器件、驱动和电源管理方案。" },
+      { name: "瑞萨电子", url: "https://www.renesas.cn/", tags: ["datasheet", "competition"], icon: "瑞", description: "适合看 MCU、汽车电子和工业控制方案资料。" },
+      { name: "英伟达 NVIDIA", url: "https://www.nvidia.cn/", tags: ["learn", "competition"], icon: "NV", description: "适合看边缘计算、CUDA、嵌入式 AI 和 Jetson 学习资料。" },
+      { name: "正点原子", url: "https://www.alientek.com/", tags: ["learn", "competition"], icon: "正", description: "STM32 和 Linux 嵌入式学习资料、例程和板卡参考价值高。" },
+      { name: "野火电子", url: "https://www.firebbs.cn/", tags: ["learn", "community"], icon: "野", description: "嵌入式入门、RTOS、Linux 和项目实战经验分享集中。" },
+      { name: "韦东山嵌入式", url: "https://www.100ask.net/", tags: ["learn", "competition"], icon: "韦", description: "嵌入式 Linux、驱动和项目实战课程比较系统。" },
+      { name: "开源原子", url: "https://atomgit.com/", tags: ["community", "tools"], icon: "A", description: "国产代码托管，适合托管课程设计、工具和作业仓库。" },
+      { name: "Gitee", url: "https://gitee.com/", tags: ["community", "tools"], icon: "G", description: "适合托管课程项目、脚本、小工具和开源工程。" },
+      { name: "GitHub", url: "https://github.com/", tags: ["community", "tools"], icon: "GH", description: "适合搜开源项目、看工程结构、学习项目和找 idea。" },
+      { name: "阿里云开发平台", url: "https://www.aliyun.com/", tags: ["tools", "learn"], icon: "云", description: "适合部署课程项目、做云端小服务和实验环境。" },
+      { name: "腾讯云", url: "https://cloud.tencent.com/", tags: ["tools", "learn"], icon: "腾", description: "适合搭简单后端、服务器实验和部署个人作品。" },
+      { name: "华为云", url: "https://www.huaweicloud.com/", tags: ["tools", "learn"], icon: "华", description: "适合看 IoT、嵌入式云端和国产化方案资料。" },
+      { name: "百度飞桨", url: "https://www.paddlepaddle.org.cn/", tags: ["learn", "tools"], icon: "P", description: "适合入门 AI、做图像分类、边缘推理和课程大作业参考。" },
+      { name: "PyTorch 中文", url: "https://pytorch-cn.readthedocs.io/", tags: ["learn", "tools"], icon: "PT", description: "适合快速看 PyTorch 中文说明和入门示例。" },
+      { name: "中国大学 MOOC", url: "https://www.icourse163.org/", tags: ["learn"], icon: "M", description: "适合补电路、信号、嵌入式、Python 和通信类课程基础。" },
+      { name: "学堂在线", url: "https://www.xuetangx.com/", tags: ["learn"], icon: "学", description: "适合看高校公开课和电子相关专业基础课。" },
+      { name: "我要自学网", url: "https://www.51zxw.net/", tags: ["learn", "tools"], icon: "51", description: "适合快速看软件工具、电路入门和工程类操作视频。" },
+      { name: "Coursera", url: "https://www.coursera.org/", tags: ["learn"], icon: "C", description: "适合补系统化专业基础和项目导向课程。" },
+      { name: "STM32CubeMX", url: "https://www.st.com/stm32cubemx", tags: ["datasheet", "tools"], icon: "C", description: "STM32 初始化配置和代码生成常用工具。" },
+      { name: "KiCad", url: "https://www.kicad.org/", tags: ["pcb", "tools"], icon: "K", description: "开源 PCB 工具，适合从原理图到 PCB 全流程练习。" },
+      { name: "立创EDA", url: "https://lceda.cn/", tags: ["pcb", "tools"], icon: "EDA", description: "在线原理图和 PCB 工具，适合快速出课程设计板。" },
+      { name: "Multisim", url: "https://www.ni.com/multisim", tags: ["tools"], icon: "M", description: "适合电路仿真、模电/数电实验验证和教学演示。" },
+      { name: "Proteus", url: "https://www.labcenter.com/", tags: ["tools"], icon: "P", description: "适合单片机仿真、简单电路验证和入门实验。" },
+      { name: "MATLAB", url: "https://www.mathworks.com/products/matlab.html", tags: ["tools"], icon: "MA", description: "适合信号处理、控制系统和算法仿真练习。" },
+      { name: "Simulink", url: "https://www.mathworks.com/products/simulink.html", tags: ["tools"], icon: "SI", description: "适合控制算法建模和嵌入式算法验证。" },
+      { name: "Git for Windows", url: "https://gitforwindows.org/", tags: ["tools"], icon: "G", description: "适合本地版本控制、脚本管理和工程协作习惯养成。" },
+      { name: "VS Code", url: "https://code.visualstudio.com/", tags: ["tools"], icon: "VS", description: "适合写代码、做文档、运行脚本和开发小工具。" },
+      { name: "Keil MDK", url: "https://www.keil.com/", tags: ["tools", "competition"], icon: "K", description: "适合 STM32 开发和单片机课程实验使用。" },
+      { name: "IAR EW", url: "https://www.iar.com/", tags: ["tools", "competition"], icon: "I", description: "适合嵌入式编译、调试和工程稳定性练习。" },
+      { name: "微信开发者社区", url: "https://developers.weixin.qq.com/", tags: ["community", "tools"], icon: "微", description: "适合看小程序、轻应用和前端生态实践。" },
+      { name: "阿里云开发者", url: "https://developer.aliyun.com/", tags: ["community", "tools"], icon: "云", description: "适合看云原生、IoT 和后端开发实践内容。" },
+      { name: "腾讯技术工程", url: "https://cloud.tencent.com/developer", tags: ["community", "learn"], icon: "腾", description: "适合看工程实践、后端和平台技术文章。" },
+      { name: "华为开发者", url: "https://developer.huawei.com/", tags: ["community", "tools"], icon: "华", description: "适合看 HarmonyOS、IoT 和嵌入式开发资料。" },
+      { name: "瑞萨电子社区", url: "https://community.renesas.com/", tags: ["community", "datasheet"], icon: "瑞", description: "适合看 MCU 应用笔记和方案讨论。" },
+      { name: "NXP 社区", url: "https://www.nxp.com/community", tags: ["community", "datasheet"], icon: "NX", description: "适合看处理器资料、参考设计和问答。" },
+      { name: "TI E2E 社区", url: "https://e2e.ti.com/", tags: ["community", "datasheet"], icon: "TI", description: "适合看电源、接口和模拟芯片讨论。" },
+      { name: "ST 社区", url: "https://community.st.com/", tags: ["community", "datasheet"], icon: "ST", description: "适合 STM32 问题排查、例程和工具讨论。" },
+      { name: "Arduino 中文社区", url: "https://www.arduino.cn/", tags: ["community", "learn"], icon: "A", description: "适合入门硬件、传感器和快速原型开发。" },
+      { name: "树莓派中国", url: "https://www.raspberrypi.com/", tags: ["learn", "competition"], icon: "R", description: "适合 Linux 入门、物联网和边缘计算实践。" },
+      { name: "RT-Thread", url: "https://www.rt-thread.org/", tags: ["learn", "competition"], icon: "RT", description: "适合实时操作系统、嵌入式软件和项目实战。" },
+      { name: "RTOS 中文站", url: "https://www.rtos.cn/", tags: ["learn", "competition"], icon: "RT", description: "适合看实时操作系统和嵌入式系统资料。" },
+      { name: "Linux 中国", url: "https://linux.cn/", tags: ["learn", "tools"], icon: "L", description: "适合看 Linux、嵌入式系统和开源工具内容。" },
+      { name: "CSDN 学院", url: "https://edu.csdn.net/", tags: ["learn", "job"], icon: "学", description: "适合看系统化课程、实战课和项目课。" },
+      { name: "慕课网", url: "https://www.imooc.com/", tags: ["learn", "tools"], icon: "慕", description: "适合补前端、后端、Python 和项目实战课程。" },
+      { name: "极客学院", url: "https://www.jikexueyuan.com/", tags: ["learn"], icon: "极", description: "适合入门编程、嵌入式、运维和 AI 基础。" },
+      { name: "全国大学生电子设计竞赛", url: "http://www.nuedc-training.com.cn/", tags: ["competition"], icon: "电赛", description: "电子信息类核心竞赛，适合查竞赛资讯、培训资料和作品参考。" },
+      { name: "全国大学生智能汽车竞赛", url: "http://www.smartcar.org.cn/", tags: ["competition"], icon: "智能车", description: "适合看智能车技术分享、车模方案、传感器和视觉组经验。" },
+      { name: "ACM/ICPC", url: "https://icpc.global/", tags: ["competition"], icon: "ACM", description: "适合看国际大学生程序设计竞赛规则、区域赛和训练资源。" },
+      { name: "RoboMaster 机甲大师赛", url: "https://www.robomaster.com/", tags: ["competition"], icon: "RM", description: "适合看机器人竞赛、视觉、嵌入式、云台和工程踩坑经验。" },
+      { name: "全国大学生机器人大赛", url: "http://www.robotcontest.cn/", tags: ["competition"], icon: "机器", description: "适合看机器人相关竞赛、机甲、救援、服务类项目经验。" },
+      { name: "蓝桥杯", url: "https://dasai.lanqiao.cn/", tags: ["competition"], icon: "蓝", description: "适合看嵌入式、软件类竞赛和项目实战训练内容。" },
+      { name: "赛氪", url: "https://www.saikr.com/", tags: ["competition"], icon: "赛", description: "适合找大学生竞赛、科创比赛和项目实践机会。" },
+      { name: "我爱竞赛网", url: "https://www.52jingsai.com/", tags: ["competition"], icon: "我", description: "适合看大学生竞赛信息、立项和组队思路。" },
+      { name: "全国大学生竞赛网", url: "http://www.cxcyds.com/", tags: ["competition"], icon: "竞", description: "适合看官方大学生竞赛通知和资料。" },
+      { name: "电子创新网", url: "https://www.eeinnovation.com/", tags: ["community", "learn"], icon: "新", description: "适合看创新项目、电子设计和学生作品。" },
+      { name: "电子发烧友", url: "https://www.elecfans.com/", tags: ["community", "learn"], icon: "电", description: "适合看行业资讯、模块选型和项目参考。" },
+      { name: "与非网", url: "https://www.eefocus.com/", tags: ["community", "learn"], icon: "E", description: "适合看半导体、硬件方案和工程师讨论。" },
+      { name: "21IC 电子网", url: "https://www.21ic.com/", tags: ["community", "learn"], icon: "21", description: "适合看行业资讯、技术文章和器件资料。" },
+      { name: "EEPW 电子工程世界", url: "https://www.eepw.com.cn/", tags: ["community", "learn"], icon: "EE", description: "适合看电子技术文章、方案和行业新闻。" },
+      { name: "电子森林", url: "https://www.eetree.cn/", tags: ["community", "pcb"], icon: "林", description: "适合看 PCB、硬件设计和开源项目实践。" },
+      { name: "电源网", url: "https://www.dianyuan.cn/", tags: ["community", "learn"], icon: "源", description: "适合看电源设计、充电、供电和功率器件方案。" },
+      { name: "EEWorld 论坛", url: "https://bbs.eeworld.com.cn/", tags: ["community", "learn"], icon: "B", description: "适合看讨论帖、求助帖和项目经验。" },
+      { name: "泰克示波器", url: "https://www.tek.com.cn/", tags: ["learn", "competition"], icon: "泰", description: "适合看示波器、探头和测量仪器资料。" },
+      { name: "是德科技", url: "https://www.keysight.com.cn/", tags: ["learn", "competition"], icon: "是", description: "适合看射频、仪器和测试测量资料。" },
+      { name: "固纬电子", url: "https://www.gwinstek.com/", tags: ["learn", "competition"], icon: "固", description: "适合看基础仪器、电源和教学实验设备。" },
+      { name: "普源精电", url: "https://www.rigol.com.cn/", tags: ["learn", "competition"], icon: "普", description: "适合看示波器、信号源和国产仪器资料。" },
+      { name: "知网", url: "https://www.cnki.net/", tags: ["learn", "job"], icon: "知", description: "适合查论文、写毕设和整理文献综述。" },
+      { name: "万方数据", url: "https://www.wanfangdata.com.cn/", tags: ["learn", "job"], icon: "万", description: "适合查文献、数据和论文参考资料。" },
+      { name: "LeetCode", url: "https://leetcode.cn/", tags: ["learn", "job"], icon: "L", description: "适合打基础、补算法和准备校招笔试。" },
+      { name: "牛客网", url: "https://www.nowcoder.com/", tags: ["learn", "job"], icon: "牛", description: "适合看校招、笔试、面试和求职经验。" },
+      { name: "极客时间", url: "https://time.geekbang.org/", tags: ["learn", "job"], icon: "极", description: "适合看系统化专栏和工程进阶课程。" },
+      { name: "菜鸟教程", url: "https://www.runoob.com/", tags: ["learn", "tools"], icon: "菜", description: "适合快速入门语言、工具和基础概念。" },
+      { name: "MDN Web Docs", url: "https://developer.mozilla.org/", tags: ["learn", "tools"], icon: "M", description: "适合查前端、网络和 Web 开发权威资料。" },
+      { name: "Stack Overflow", url: "https://stackoverflow.com/", tags: ["community", "learn"], icon: "S", description: "适合查编程问题、报错和工程实现细节。" },
+      { name: "GitHub Trending", url: "https://github.com/trending", tags: ["community", "tools"], icon: "GT", description: "适合找热门开源项目和创作灵感。" }
     ];
+
     const uniqueLinks = [];
     const seen = new Set();
     for (const item of links) {
@@ -456,7 +509,7 @@
       "linear-gradient(-45deg, hsl(25, 55%, 52%) 0%, hsl(45, 50%, 50%) 100%)",
       "linear-gradient(-45deg, hsl(141, 45%, 46%) 0%, hsl(181, 42%, 42%) 100%)",
       "linear-gradient(-45deg, hsl(210, 40%, 52%) 0%, hsl(240, 30%, 50%) 100%)",
-      "linear-gradient(-45deg, hsl(340, 35%, 54%) 0%, hsl(20, 40%, 52%) 100%)"
+      "linear-gradient(-45deg, hsl(340, 35%, 54%) 0%, hsl(20, 40%, 52%) 100%)",
     ];
 
     function hashColor(str) {
@@ -478,13 +531,10 @@
         card.setAttribute("data-tags", item.tags.join(" "));
         card.setAttribute("data-keywords", `${item.name} ${item.description} ${item.tags.join(" ")}`.toLowerCase());
 
-        const bg = document.createElement("span");
-        bg.className = "nav-card-bg";
-        bg.style.background = item.color || hashColor(item.url);
-
         const icon = document.createElement("span");
         icon.className = "nav-card-icon";
         icon.textContent = item.icon || item.name.slice(0, 2);
+        icon.style.background = "transparent";
 
         const label = document.createElement("span");
         label.className = "nav-card-label";
@@ -508,6 +558,7 @@
         item.tags.forEach(tag => {
           const span = document.createElement("span");
           span.className = "pill";
+          span.style.background = "var(--bg-color)";
           span.textContent = tag;
           tagRow.appendChild(span);
         });
@@ -515,6 +566,12 @@
         content.appendChild(title);
         content.appendChild(desc);
         content.appendChild(tagRow);
+
+        const bg = document.createElement("span");
+        bg.style.position = "absolute";
+        bg.style.inset = "0";
+        bg.style.background = item.color || hashColor(item.url);
+        bg.style.zIndex = "-1";
 
         card.appendChild(bg);
         card.appendChild(icon);
@@ -524,13 +581,8 @@
       });
 
       emptyHint.style.display = items.length ? "none" : "block";
-
-      requestAnimationFrame(() => {
-        document.querySelectorAll(".nav-card").forEach((node, idx) => {
-          node.style.transitionDelay = `${(idx % 12) * 35}ms`;
-        });
-      });
     }
+
     function applyFilter(filter, keyword = "") {
       const kw = keyword.trim().toLowerCase();
       const filtered = uniqueLinks.filter(item => {
@@ -554,9 +606,9 @@
     siteSearch.addEventListener("input", () => applyFilter(currentFilter, siteSearch.value));
 
     const typewriterTexts = [
-      "褰撳墠宸叉暣鐞嗘牳蹇冨父鐢ㄧ珯鐐癸紝鍙寜鍒嗙被绛涢€夊拰鎼滅储",
-      "閲嶇偣瑕嗙洊鑺墖璧勬枡銆丒DA 宸ュ叿銆佽绋嬨€佺珵璧涖€佹眰鑱屽拰绀惧尯",
-      "寤鸿鎸夎璁俱€佸疄楠屻€佺珵璧涘拰姹傝亴闃舵鍒嗘壒鏀惰棌"
+      "当前共整理多个常用站点，按分类整理，可直接跳转使用",
+      "适合查芯片、EDA、课程、竞赛、求职和日常学习资料",
+      "建议配合课设、实验、竞赛和求职阶段分批收藏",
     ];
     const typewriterTarget = document.getElementById("typewriterTarget");
     let phraseIndex = 0;
@@ -580,12 +632,12 @@
           phraseIndex += 1;
         }
       }
-      setTimeout(typeWriter, isDeleting ? 28 : 62);
+      setTimeout(typeWriter, isDeleting ? 30 : 65);
     }
 
     function initParticles() {
       const canvas = document.getElementById("pageParticles");
-      if (!canvas || prefersReducedMotion) {
+      if (!canvas || window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
         return;
       }
       const ctx = canvas.getContext("2d");
@@ -595,12 +647,12 @@
       };
       resize();
       window.addEventListener("resize", resize);
-      const particles = Array.from({ length: 36 }).map(() => ({
+      const particles = Array.from({ length: 38 }).map(() => ({
         x: Math.random() * canvas.width,
         y: Math.random() * canvas.height,
         radius: Math.random() * 1.3 + 0.6,
-        speedX: (Math.random() - 0.5) * 0.24,
-        speedY: (Math.random() - 0.5) * 0.24,
+        speedX: (Math.random() - 0.5) * 0.25,
+        speedY: (Math.random() - 0.5) * 0.25,
         opacity: Math.random() * 0.22 + 0.08,
       }));
       const draw = () => {
@@ -622,12 +674,13 @@
       };
       draw();
     }
+
     function applyTheme() {
       const saved = localStorage.getItem("ee-guide-theme");
       const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
       const theme = saved ? saved : prefersDark ? "dark" : "light";
       document.documentElement.setAttribute("data-theme", theme);
-      themeToggle.textContent = theme === "dark" ? "馃寳 涓婚" : "馃寳 涓婚";
+      themeToggle.textContent = theme === "dark" ? "☀️ 主题" : "🌗 主题";
     }
 
     themeToggle.addEventListener("click", () => {
@@ -638,31 +691,17 @@
     });
 
     window.addEventListener("scroll", () => {
-      backToTop.style.display = window.scrollY > 420 ? "flex" : "none";
+      backToTop.style.display = window.scrollY > 380 ? "flex" : "none";
     });
 
     backToTop.addEventListener("click", () => {
       window.scrollTo({ top: 0, behavior: "smooth" });
     });
 
-    function revealOnScroll() {
-      const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add("is-visible");
-            observer.unobserve(entry.target);
-          }
-        });
-      }, { threshold: 0.12, rootMargin: "0px 0px -28px 0px" });
-
-      document.querySelectorAll("[data-reveal], .nav-card").forEach(el => observer.observe(el));
-    }
-
     applyTheme();
     initParticles();
     renderCards(uniqueLinks);
-    revealOnScroll();
-    setTimeout(typeWriter, prefersReducedMotion ? 0 : 420);
+    setTimeout(typeWriter, 400);
   </script>
 </body>
 </html>
