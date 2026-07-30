@@ -78,8 +78,7 @@
     }
 
     .page-wrapper {
-      position: relative;
-      min-height: 100vh;
+      position: relative; min-height: 100vh; display: flex; flex-direction: column; display: flex; flex-direction: column;
       background:
         radial-gradient(circle at 20% 10%, rgba(139, 69, 19, 0.08), transparent 26%),
         radial-gradient(circle at 78% 22%, rgba(184, 134, 11, 0.10), transparent 28%),
@@ -114,10 +113,10 @@
     .cover-section {
       position: relative;
       z-index: 10;
-      max-width: 860px;
+      max-width: 900px;
       margin: 0 auto;
       text-align: center;
-      padding: 56px 18px 18px;
+      padding: 62px 18px 22px;
     }
 
     .cover-section h1 {
@@ -220,13 +219,7 @@
       line-height: 1.4;
     }
 
-    .nav-card-grid {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 2.5rem;
-      padding: 1rem 1rem 2rem;
-    }
+    .nav-card-grid {`n      display: grid;`n      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));`n      gap: 28px;`n      padding: 1rem 1rem 2rem;`n      justify-items: center;`n    }
 
     .filter-chip {
       border: 1px solid var(--button-border-color);
@@ -365,7 +358,7 @@
       </p>
     </section>
 
-    <main style="position: relative; z-index: 10; max-width: 1100px; margin: 0 auto; padding: 18px 14px 120px;">
+    <main style="position: relative; z-index: 10; max-width: 1180px; margin: 0 auto; padding: 18px 14px 120px; flex: 1 0 auto;">
       <section style="display: flex; flex-wrap: wrap; gap: 10px; align-items: center; justify-content: center; margin-bottom: 18px;">
         <button class="filter-chip active" data-filter="all">全部</button>
         <button class="filter-chip" data-filter="components">买件/常用商城</button>
@@ -383,7 +376,7 @@
       <div id="cardGrid" class="nav-card-grid"></div>
     </main>
 
-    <footer style="position: relative; z-index: 10; text-align: center; padding: 18px 14px 24px; color: var(--text-color); opacity: 0.7; font-size: 14px;">
+    <footer style="position: relative; z-index: 10; text-align: center; padding: 18px 14px 24px; color: var(--text-color); opacity: 0.7; font-size: 14px; flex-shrink: 0;">
       建议收藏常用站点，按自己当前课设、实验、竞赛和求职阶段分批整理。
     </footer>
 
@@ -395,98 +388,55 @@
   </div>
 
   <script>
-    const links = [
+        const links = [
       { name: "CSDN", url: "https://www.csdn.net/", tags: ["community", "learn"], icon: "CS", description: "查 bug、找代码片段、看嵌入式/C++/通信类文章和实战笔记。" },
-      { name: "博客园", url: "https://www.cnblogs.com/", tags: ["community", "learn"], icon: "博", description: "老牌技术博客平台，适合看工程实现和长期维护的项目记录。" },
-      { name: "掘金", url: "https://juejin.cn/", tags: ["community", "learn"], icon: "掘", description: "适合看前端、工程化、工具链、产品化实现和新人练手思路。" },
-      { name: "知乎", url: "https://www.zhihu.com/", tags: ["community", "learn"], icon: "知", description: "适合搜专业问题、择业、竞赛和入门路径的讨论。" },
-      { name: "Bilibili", url: "https://www.bilibili.com/", tags: ["learn"], icon: "B", description: "适合看公开课、竞赛经验、仪器拆解、EDA 实操和项目演示视频。" },
-      { name: "小芯半导体", url: "https://www.xchip.cn/", tags: ["datasheet", "components"], icon: "芯", description: "查芯片资料、中文 datasheet、替代料和选型信息比较方便。" },
-      { name: "立创商城", url: "https://www.szlcsc.com/", tags: ["components", "pcb"], icon: "立", description: "买电阻电容、模块、开发板和 PCB 打样、SMT 贴片常用。" },
-      { name: "得利电子", url: "https://www.ichunt.com/", tags: ["components", "datasheet"], icon: "得", description: "电子元器件商城，适合找被动元件、连接器和常用模块。" },
-      { name: "云汉芯城", url: "https://www.ickey.cn/", tags: ["components", "datasheet"], icon: "云", description: "元器件数据手册、采购和 BOM 配套查询常用。" },
-      { name: "唯样商城", url: "https://www.oneyac.com/", tags: ["components", "datasheet"], icon: "唯", description: "库存查询、型号检索和替代料选型比较直接。" },
-      { name: "嘉立创", url: "https://www.jlc.com/", tags: ["pcb", "components"], icon: "嘉", description: "PCB 打样、SMT、PCBA、3D 打印，做课设和量产小批量都很常用。" },
-      { name: "华秋电子", url: "https://www.hqew.com/", tags: ["components", "pcb"], icon: "华", description: "元器件商城和 PCB 服务都较全，适合从原理图到板子一站式推进。" },
-      { name: "贸泽电子", url: "https://www.mouser.cn/", tags: ["components", "datasheet"], icon: "M", description: "查原厂芯片、参考设计和器件选型说明很方便。" },
+      { name: "掘金", url: "https://juejin.cn/", tags: ["community", "learn"], icon: "掘", description: "看工程化、前端、工具链、产品化实现和新人练手思路。" },
+      { name: "知乎", url: "https://www.zhihu.com/", tags: ["community", "learn"], icon: "知", description: "搜专业问题、竞赛经验、择业和入门路径讨论。" },
+      { name: "Bilibili", url: "https://www.bilibili.com/", tags: ["learn"], icon: "B", description: "看公开课、竞赛经验、仪器拆解、EDA 实操和项目演示。" },
+      { name: "GitHub", url: "https://github.com/", tags: ["community", "tools", "competition"], icon: "GH", description: "搜开源项目、看工程结构、学习作品和找 idea。" },
+      { name: "Gitee", url: "https://gitee.com/", tags: ["community", "tools"], icon: "G", description: "托管课程项目、脚本、小工具和国内开源工程。" },
+      { name: "小芯半导体", url: "https://www.xchip.cn/", tags: ["datasheet", "components"], icon: "芯", description: "查芯片资料、中文 datasheet、替代料和选型信息。" },
+      { name: "立创商城", url: "https://www.szlcsc.com/", tags: ["components", "pcb"], icon: "立", description: "买元器件、模块、开发板，以及 PCB 打样/SMT 常用。" },
+      { name: "嘉立创", url: "https://www.jlc.com/", tags: ["pcb", "components"], icon: "嘉", description: "PCB 打样、SMT、PCBA、3D 打印，课设和小批量都常用。" },
+      { name: "华秋电子", url: "https://www.hqew.com/", tags: ["components", "pcb"], icon: "华", description: "元器件商城和 PCB 服务较全，方便从原理图到板子。" },
+      { name: "贸泽电子", url: "https://www.mouser.cn/", tags: ["components", "datasheet"], icon: "M", description: "查原厂芯片、参考设计和器件选型说明。" },
       { name: "ST 意法半导体", url: "https://www.st.com/", tags: ["datasheet", "competition"], icon: "ST", description: "查 STM32 官方手册、参考设计、工具和例程首选。" },
-      { name: "NXP 官方", url: "https://www.nxp.com/", tags: ["datasheet", "competition"], icon: "NX", description: "查 i.MX、Kinetis、射频和汽车电子资料很全。" },
-      { name: "英飞凌 Infineon", url: "https://www.infineon.com/", tags: ["datasheet", "competition"], icon: "IF", description: "适合查功率器件、驱动和电源管理方案。" },
-      { name: "瑞萨电子", url: "https://www.renesas.cn/", tags: ["datasheet", "competition"], icon: "瑞", description: "适合看 MCU、汽车电子和工业控制方案资料。" },
-      { name: "英伟达 NVIDIA", url: "https://www.nvidia.cn/", tags: ["learn", "competition"], icon: "NV", description: "适合看边缘计算、CUDA、嵌入式 AI 和 Jetson 学习资料。" },
-      { name: "正点原子", url: "https://www.alientek.com/", tags: ["learn", "competition"], icon: "正", description: "STM32 和 Linux 嵌入式学习资料、例程和板卡参考价值高。" },
-      { name: "野火电子", url: "https://www.firebbs.cn/", tags: ["learn", "community"], icon: "野", description: "嵌入式入门、RTOS、Linux 和项目实战经验分享集中。" },
-      { name: "韦东山嵌入式", url: "https://www.100ask.net/", tags: ["learn", "competition"], icon: "韦", description: "嵌入式 Linux、驱动和项目实战课程比较系统。" },
-      { name: "开源原子", url: "https://atomgit.com/", tags: ["community", "tools"], icon: "A", description: "国产代码托管，适合托管课程设计、工具和作业仓库。" },
-      { name: "Gitee", url: "https://gitee.com/", tags: ["community", "tools"], icon: "G", description: "适合托管课程项目、脚本、小工具和开源工程。" },
-      { name: "GitHub", url: "https://github.com/", tags: ["community", "tools"], icon: "GH", description: "适合搜开源项目、看工程结构、学习项目和找 idea。" },
-      { name: "阿里云开发平台", url: "https://www.aliyun.com/", tags: ["tools", "learn"], icon: "云", description: "适合部署课程项目、做云端小服务和实验环境。" },
-      { name: "腾讯云", url: "https://cloud.tencent.com/", tags: ["tools", "learn"], icon: "腾", description: "适合搭简单后端、服务器实验和部署个人作品。" },
-      { name: "华为云", url: "https://www.huaweicloud.com/", tags: ["tools", "learn"], icon: "华", description: "适合看 IoT、嵌入式云端和国产化方案资料。" },
-      { name: "百度飞桨", url: "https://www.paddlepaddle.org.cn/", tags: ["learn", "tools"], icon: "P", description: "适合入门 AI、做图像分类、边缘推理和课程大作业参考。" },
-      { name: "PyTorch 中文", url: "https://pytorch-cn.readthedocs.io/", tags: ["learn", "tools"], icon: "PT", description: "适合快速看 PyTorch 中文说明和入门示例。" },
-      { name: "中国大学 MOOC", url: "https://www.icourse163.org/", tags: ["learn"], icon: "M", description: "适合补电路、信号、嵌入式、Python 和通信类课程基础。" },
-      { name: "学堂在线", url: "https://www.xuetangx.com/", tags: ["learn"], icon: "学", description: "适合看高校公开课和电子相关专业基础课。" },
-      { name: "我要自学网", url: "https://www.51zxw.net/", tags: ["learn", "tools"], icon: "51", description: "适合快速看软件工具、电路入门和工程类操作视频。" },
-      { name: "Coursera", url: "https://www.coursera.org/", tags: ["learn"], icon: "C", description: "适合补系统化专业基础和项目导向课程。" },
-      { name: "STM32CubeMX", url: "https://www.st.com/stm32cubemx", tags: ["datasheet", "tools"], icon: "C", description: "STM32 初始化配置和代码生成常用工具。" },
-      { name: "KiCad", url: "https://www.kicad.org/", tags: ["pcb", "tools"], icon: "K", description: "开源 PCB 工具，适合从原理图到 PCB 全流程练习。" },
+      { name: "NXP 官方", url: "https://www.nxp.com/", tags: ["datasheet", "competition"], icon: "NX", description: "查 i.MX、Kinetis、射频和汽车电子资料。" },
+      { name: "英飞凌", url: "https://www.infineon.com/", tags: ["datasheet", "competition"], icon: "IF", description: "查功率器件、驱动和电源管理方案。" },
+      { name: "瑞萨电子", url: "https://www.renesas.cn/", tags: ["datasheet", "competition"], icon: "瑞", description: "看 MCU、汽车电子和工业控制方案资料。" },
       { name: "立创EDA", url: "https://lceda.cn/", tags: ["pcb", "tools"], icon: "EDA", description: "在线原理图和 PCB 工具，适合快速出课程设计板。" },
+      { name: "KiCad", url: "https://www.kicad.org/", tags: ["pcb", "tools"], icon: "K", description: "开源 PCB 工具，适合从原理图到 PCB 全流程练习。" },
       { name: "Multisim", url: "https://www.ni.com/multisim", tags: ["tools"], icon: "M", description: "适合电路仿真、模电/数电实验验证和教学演示。" },
       { name: "Proteus", url: "https://www.labcenter.com/", tags: ["tools"], icon: "P", description: "适合单片机仿真、简单电路验证和入门实验。" },
       { name: "MATLAB", url: "https://www.mathworks.com/products/matlab.html", tags: ["tools"], icon: "MA", description: "适合信号处理、控制系统和算法仿真练习。" },
-      { name: "Simulink", url: "https://www.mathworks.com/products/simulink.html", tags: ["tools"], icon: "SI", description: "适合控制算法建模和嵌入式算法验证。" },
-      { name: "Git for Windows", url: "https://gitforwindows.org/", tags: ["tools"], icon: "G", description: "适合本地版本控制、脚本管理和工程协作习惯养成。" },
-      { name: "VS Code", url: "https://code.visualstudio.com/", tags: ["tools"], icon: "VS", description: "适合写代码、做文档、运行脚本和开发小工具。" },
       { name: "Keil MDK", url: "https://www.keil.com/", tags: ["tools", "competition"], icon: "K", description: "适合 STM32 开发和单片机课程实验使用。" },
       { name: "IAR EW", url: "https://www.iar.com/", tags: ["tools", "competition"], icon: "I", description: "适合嵌入式编译、调试和工程稳定性练习。" },
-      { name: "微信开发者社区", url: "https://developers.weixin.qq.com/", tags: ["community", "tools"], icon: "微", description: "适合看小程序、轻应用和前端生态实践。" },
-      { name: "阿里云开发者", url: "https://developer.aliyun.com/", tags: ["community", "tools"], icon: "云", description: "适合看云原生、IoT 和后端开发实践内容。" },
-      { name: "腾讯技术工程", url: "https://cloud.tencent.com/developer", tags: ["community", "learn"], icon: "腾", description: "适合看工程实践、后端和平台技术文章。" },
-      { name: "华为开发者", url: "https://developer.huawei.com/", tags: ["community", "tools"], icon: "华", description: "适合看 HarmonyOS、IoT 和嵌入式开发资料。" },
-      { name: "瑞萨电子社区", url: "https://community.renesas.com/", tags: ["community", "datasheet"], icon: "瑞", description: "适合看 MCU 应用笔记和方案讨论。" },
-      { name: "NXP 社区", url: "https://www.nxp.com/community", tags: ["community", "datasheet"], icon: "NX", description: "适合看处理器资料、参考设计和问答。" },
-      { name: "TI E2E 社区", url: "https://e2e.ti.com/", tags: ["community", "datasheet"], icon: "TI", description: "适合看电源、接口和模拟芯片讨论。" },
-      { name: "ST 社区", url: "https://community.st.com/", tags: ["community", "datasheet"], icon: "ST", description: "适合 STM32 问题排查、例程和工具讨论。" },
-      { name: "Arduino 中文社区", url: "https://www.arduino.cn/", tags: ["community", "learn"], icon: "A", description: "适合入门硬件、传感器和快速原型开发。" },
-      { name: "树莓派中国", url: "https://www.raspberrypi.com/", tags: ["learn", "competition"], icon: "R", description: "适合 Linux 入门、物联网和边缘计算实践。" },
-      { name: "RT-Thread", url: "https://www.rt-thread.org/", tags: ["learn", "competition"], icon: "RT", description: "适合实时操作系统、嵌入式软件和项目实战。" },
-      { name: "RTOS 中文站", url: "https://www.rtos.cn/", tags: ["learn", "competition"], icon: "RT", description: "适合看实时操作系统和嵌入式系统资料。" },
-      { name: "Linux 中国", url: "https://linux.cn/", tags: ["learn", "tools"], icon: "L", description: "适合看 Linux、嵌入式系统和开源工具内容。" },
-      { name: "CSDN 学院", url: "https://edu.csdn.net/", tags: ["learn", "job"], icon: "学", description: "适合看系统化课程、实战课和项目课。" },
-      { name: "慕课网", url: "https://www.imooc.com/", tags: ["learn", "tools"], icon: "慕", description: "适合补前端、后端、Python 和项目实战课程。" },
-      { name: "极客学院", url: "https://www.jikexueyuan.com/", tags: ["learn"], icon: "极", description: "适合入门编程、嵌入式、运维和 AI 基础。" },
-      { name: "全国大学生电子设计竞赛", url: "http://www.nuedc-training.com.cn/", tags: ["competition"], icon: "电赛", description: "电子信息类核心竞赛，适合查竞赛资讯、培训资料和作品参考。" },
-      { name: "全国大学生智能汽车竞赛", url: "http://www.smartcar.org.cn/", tags: ["competition"], icon: "智能车", description: "适合看智能车技术分享、车模方案、传感器和视觉组经验。" },
-      { name: "ACM/ICPC", url: "https://icpc.global/", tags: ["competition"], icon: "ACM", description: "适合看国际大学生程序设计竞赛规则、区域赛和训练资源。" },
-      { name: "RoboMaster 机甲大师赛", url: "https://www.robomaster.com/", tags: ["competition"], icon: "RM", description: "适合看机器人竞赛、视觉、嵌入式、云台和工程踩坑经验。" },
-      { name: "全国大学生机器人大赛", url: "http://www.robotcontest.cn/", tags: ["competition"], icon: "机器", description: "适合看机器人相关竞赛、机甲、救援、服务类项目经验。" },
-      { name: "蓝桥杯", url: "https://dasai.lanqiao.cn/", tags: ["competition"], icon: "蓝", description: "适合看嵌入式、软件类竞赛和项目实战训练内容。" },
+      { name: "VS Code", url: "https://code.visualstudio.com/", tags: ["tools"], icon: "VS", description: "适合写代码、做文档、运行脚本和开发小工具。" },
+      { name: "Git for Windows", url: "https://gitforwindows.org/", tags: ["tools"], icon: "G", description: "适合本地版本控制、脚本管理和工程协作习惯养成。" },
+      { name: "正点原子", url: "https://www.alientek.com/", tags: ["learn", "competition"], icon: "正", description: "STM32 和 Linux 嵌入式学习资料、例程和板卡参考。" },
+      { name: "野火电子", url: "https://www.firebbs.cn/", tags: ["learn", "community"], icon: "野", description: "嵌入式入门、RTOS、Linux 和项目实战经验集中。" },
+      { name: "韦东山嵌入式", url: "https://www.100ask.net/", tags: ["learn", "competition"], icon: "韦", description: "嵌入式 Linux、驱动和项目实战课程较系统。" },
+      { name: "中国大学 MOOC", url: "https://www.icourse163.org/", tags: ["learn"], icon: "M", description: "适合补电路、信号、嵌入式、Python 和通信类基础。" },
+      { name: "学堂在线", url: "https://www.xuetangx.com/", tags: ["learn"], icon: "学", description: "适合看高校公开课和电子相关专业基础课。" },
+      { name: "泰克科技", url: "https://www.tek.com.cn/", tags: ["learn", "competition"], icon: "泰", description: "看示波器、探头和测试测量资料。" },
+      { name: "是德科技", url: "https://www.keysight.com.cn/", tags: ["learn", "competition"], icon: "是", description: "看射频、仪器和测试测量资料。" },
+      { name: "普源精电", url: "https://www.rigol.com.cn/", tags: ["learn", "competition"], icon: "普", description: "看示波器、信号源和国产仪器资料。" },
+      { name: "全国大学生电子设计竞赛", url: "http://www.nuedc-training.com.cn/", tags: ["competition"], icon: "电赛", description: "电子信息核心竞赛，适合查资讯、培训和作品参考。" },
+      { name: "全国大学生智能汽车竞赛", url: "http://www.smartcar.org.cn/", tags: ["competition"], icon: "智能车", description: "适合看车模方案、传感器、视觉和竞赛经验。" },
+      { name: "ACM/ICPC", url: "https://icpc.global/", tags: ["competition"], icon: "ACM", description: "适合看程序设计竞赛规则、区域赛和训练资源。" },
+      { name: "RoboMaster 机甲大师赛", url: "https://www.robomaster.com/", tags: ["competition"], icon: "RM", description: "适合看机器人、视觉、嵌入式和工程踩坑经验。" },
+      { name: "全国大学生机器人大赛", url: "http://www.robotcontest.cn/", tags: ["competition"], icon: "机器", description: "适合看机器人相关竞赛和项目实战经验。" },
+      { name: "蓝桥杯", url: "https://dasai.lanqiao.cn/", tags: ["competition"], icon: "蓝", description: "适合看嵌入式、软件类竞赛和训练内容。" },
       { name: "赛氪", url: "https://www.saikr.com/", tags: ["competition"], icon: "赛", description: "适合找大学生竞赛、科创比赛和项目实践机会。" },
-      { name: "我爱竞赛网", url: "https://www.52jingsai.com/", tags: ["competition"], icon: "我", description: "适合看大学生竞赛信息、立项和组队思路。" },
-      { name: "全国大学生竞赛网", url: "http://www.cxcyds.com/", tags: ["competition"], icon: "竞", description: "适合看官方大学生竞赛通知和资料。" },
-      { name: "电子创新网", url: "https://www.eeinnovation.com/", tags: ["community", "learn"], icon: "新", description: "适合看创新项目、电子设计和学生作品。" },
-      { name: "电子发烧友", url: "https://www.elecfans.com/", tags: ["community", "learn"], icon: "电", description: "适合看行业资讯、模块选型和项目参考。" },
-      { name: "与非网", url: "https://www.eefocus.com/", tags: ["community", "learn"], icon: "E", description: "适合看半导体、硬件方案和工程师讨论。" },
-      { name: "21IC 电子网", url: "https://www.21ic.com/", tags: ["community", "learn"], icon: "21", description: "适合看行业资讯、技术文章和器件资料。" },
-      { name: "EEPW 电子工程世界", url: "https://www.eepw.com.cn/", tags: ["community", "learn"], icon: "EE", description: "适合看电子技术文章、方案和行业新闻。" },
-      { name: "电子森林", url: "https://www.eetree.cn/", tags: ["community", "pcb"], icon: "林", description: "适合看 PCB、硬件设计和开源项目实践。" },
-      { name: "电源网", url: "https://www.dianyuan.cn/", tags: ["community", "learn"], icon: "源", description: "适合看电源设计、充电、供电和功率器件方案。" },
-      { name: "EEWorld 论坛", url: "https://bbs.eeworld.com.cn/", tags: ["community", "learn"], icon: "B", description: "适合看讨论帖、求助帖和项目经验。" },
-      { name: "泰克示波器", url: "https://www.tek.com.cn/", tags: ["learn", "competition"], icon: "泰", description: "适合看示波器、探头和测量仪器资料。" },
-      { name: "是德科技", url: "https://www.keysight.com.cn/", tags: ["learn", "competition"], icon: "是", description: "适合看射频、仪器和测试测量资料。" },
-      { name: "固纬电子", url: "https://www.gwinstek.com/", tags: ["learn", "competition"], icon: "固", description: "适合看基础仪器、电源和教学实验设备。" },
-      { name: "普源精电", url: "https://www.rigol.com.cn/", tags: ["learn", "competition"], icon: "普", description: "适合看示波器、信号源和国产仪器资料。" },
       { name: "知网", url: "https://www.cnki.net/", tags: ["learn", "job"], icon: "知", description: "适合查论文、写毕设和整理文献综述。" },
-      { name: "万方数据", url: "https://www.wanfangdata.com.cn/", tags: ["learn", "job"], icon: "万", description: "适合查文献、数据和论文参考资料。" },
-      { name: "LeetCode", url: "https://leetcode.cn/", tags: ["learn", "job"], icon: "L", description: "适合打基础、补算法和准备校招笔试。" },
+      { name: "LeetCode", url: "https://leetcode.cn/", tags: ["learn", "job"], icon: "L", description: "适合打基础、补算法和准备笔试面试。" },
       { name: "牛客网", url: "https://www.nowcoder.com/", tags: ["learn", "job"], icon: "牛", description: "适合看校招、笔试、面试和求职经验。" },
       { name: "极客时间", url: "https://time.geekbang.org/", tags: ["learn", "job"], icon: "极", description: "适合看系统化专栏和工程进阶课程。" },
       { name: "菜鸟教程", url: "https://www.runoob.com/", tags: ["learn", "tools"], icon: "菜", description: "适合快速入门语言、工具和基础概念。" },
       { name: "MDN Web Docs", url: "https://developer.mozilla.org/", tags: ["learn", "tools"], icon: "M", description: "适合查前端、网络和 Web 开发权威资料。" },
-      { name: "Stack Overflow", url: "https://stackoverflow.com/", tags: ["community", "learn"], icon: "S", description: "适合查编程问题、报错和工程实现细节。" },
-      { name: "GitHub Trending", url: "https://github.com/trending", tags: ["community", "tools"], icon: "GT", description: "适合找热门开源项目和创作灵感。" }
+      { name: "Stack Overflow", url: "https://stackoverflow.com/", tags: ["community", "learn"], icon: "S", description: "适合查编程问题、报错和工程实现细节。" }
     ];
+;
 
     const uniqueLinks = [];
     const seen = new Set();
@@ -705,3 +655,6 @@
   </script>
 </body>
 </html>
+
+
+
