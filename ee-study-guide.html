@@ -219,7 +219,13 @@
       line-height: 1.4;
     }
 
-    .nav-card-grid {`n      display: grid;`n      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));`n      gap: 28px;`n      padding: 1rem 1rem 2rem;`n      justify-items: center;`n    }
+    .nav-card-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 28px;
+      padding: 1rem 1rem 2rem;
+      justify-items: center;
+    }
 
     .filter-chip {
       border: 1px solid var(--button-border-color);
@@ -297,6 +303,96 @@
       padding: 48px 18px;
       color: var(--text-color);
       opacity: 0.75;
+    }
+
+    @media (max-width: 700px) {
+      .nav-card-grid {
+        grid-template-columns: 1fr;
+        gap: 22px;
+        padding: 1rem 0.5rem 2rem;
+      }
+      .nav-card {
+        width: 100%;
+        max-width: 320px;
+      }
+      .cover-section {
+        padding: 36px 14px 18px;
+      }
+      .cover-section h1 {
+        font-size: 26px;
+      }
+      .back-top {
+        width: 44px;
+        height: 44px;
+        right: 14px;
+        bottom: 14px;
+      }
+      .filter-chip {
+        padding: 9px 12px;
+        min-height: 36px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .cover-section {
+        padding: 24px 12px 14px;
+      }
+      .cover-section h1 {
+        font-size: 22px;
+      }
+      main {
+        padding: 14px 10px 80px !important;
+      }
+      .top-bar > div {
+        flex-direction: column !important;
+        align-items: stretch !important;
+        padding: 8px 10px !important;
+        gap: 8px !important;
+      }
+      .top-bar > div > div:last-child {
+        width: 100%;
+        flex-wrap: nowrap;
+      }
+      .search-input {
+        flex: 1 1 auto;
+        width: auto !important;
+        min-width: 0;
+        min-height: 44px;
+      }
+      #themeToggle {
+        flex: 0 0 auto;
+        min-height: 44px;
+        white-space: nowrap;
+      }
+      .filter-chip {
+        padding: 9px 12px;
+        min-height: 40px;
+        font-size: 13px;
+      }
+      main > section {
+        flex-wrap: nowrap !important;
+        justify-content: flex-start !important;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        padding-bottom: 8px;
+        margin-bottom: 14px !important;
+      }
+      main > section .filter-chip {
+        flex: 0 0 auto;
+        white-space: nowrap;
+      }
+      .nav-card {
+        height: 190px;
+      }
+      .nav-card__title {
+        font-size: 20px;
+      }
+      .nav-card__description {
+        font-size: 13px;
+      }
+      .nav-card__content {
+        padding: 16px;
+      }
     }
 
     @media (max-width: 360px) {
