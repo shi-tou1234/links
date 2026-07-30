@@ -13,11 +13,11 @@ const links = [
   { name: "Bilibili", url: "https://www.bilibili.com/", tags: ["learn"], icon: "B", description: "看公开课、竞赛经验、仪器拆解、EDA 实操和项目演示。" },
 
   // ── Datasheet/型号 ──
-  { name: "小芯半导体", url: "https://www.xchip.cn/", tags: ["datasheet", "components"], icon: "芯", description: "查芯片资料、中文 datasheet、替代料和选型信息。" },
+  { name: "半导小芯", url: "https://www.semiee.com/", tags: ["datasheet", "components"], icon: "芯", description: "查芯片资料、中文 datasheet、替代料和选型信息。" },
   { name: "贸泽电子", url: "https://www.mouser.cn/", tags: ["components", "datasheet"], icon: "M", description: "查原厂芯片、参考设计和器件选型说明。" },
-  { name: "ST 意法半导体", url: "https://www.st.com/", tags: ["datasheet", "competition"], icon: "ST", description: "查 STM32 官方手册、参考设计、工具和例程首选。" },
-  { name: "NXP 官方", url: "https://www.nxp.com/", tags: ["datasheet", "competition"], icon: "NX", description: "查 i.MX、Kinetis、射频和汽车电子资料。" },
-  { name: "英飞凌", url: "https://www.infineon.com/", tags: ["datasheet", "competition"], icon: "IF", description: "查功率器件、驱动和电源管理方案。" },
+  { name: "ST 意法半导体", url: "https://www.st.com.cn/", tags: ["datasheet", "competition"], icon: "ST", description: "查 STM32 官方手册、参考设计、工具和例程首选。" },
+  { name: "NXP 官方", url: "https://www.nxp.com.cn/", tags: ["datasheet", "competition"], icon: "NX", description: "查 i.MX、Kinetis、射频和汽车电子资料。" },
+  { name: "英飞凌", url: "https://www.infineon.cn/", tags: ["datasheet", "competition"], icon: "IF", description: "查功率器件、驱动和电源管理方案。" },
   { name: "瑞萨电子", url: "https://www.renesas.cn/", tags: ["datasheet", "competition"], icon: "瑞", description: "看 MCU、汽车电子和工业控制方案资料。" },
 
   // ── 买件/常用商城 ──
@@ -36,7 +36,7 @@ const links = [
   { name: "IAR EW", url: "https://www.iar.com/", tags: ["tools", "competition"], icon: "I", description: "适合嵌入式编译、调试和工程稳定性练习。" },
   { name: "Multisim", url: "https://www.ni.com/multisim", tags: ["tools"], icon: "M", description: "适合电路仿真、模电/数电实验验证和教学演示。" },
   { name: "Proteus", url: "https://www.labcenter.com/", tags: ["tools"], icon: "P", description: "适合单片机仿真、简单电路验证和入门实验。" },
-  { name: "MATLAB", url: "https://www.mathworks.com/products/matlab.html", tags: ["tools"], icon: "MA", description: "适合信号处理、控制系统和算法仿真练习。" },
+  { name: "MATLAB", url: "https://ww2.mathworks.cn/products/matlab.html", tags: ["tools"], icon: "MA", description: "适合信号处理、控制系统和算法仿真练习。" },
 
   // ── 学习/课程/视频 ──
   { name: "正点原子", url: "https://www.alientek.com/", tags: ["learn", "competition"], icon: "正", description: "STM32 和 Linux 嵌入式学习资料、例程和板卡参考。" },
@@ -51,11 +51,11 @@ const links = [
   { name: "普源精电", url: "https://www.rigol.com.cn/", tags: ["learn", "competition"], icon: "普", description: "看示波器、信号源和国产仪器资料。" },
 
   // ── 竞赛/实验室/作品 ──
-  { name: "全国大学生电子设计竞赛", url: "http://www.nuedc-training.com.cn/", tags: ["competition"], icon: "电赛", description: "电子信息核心竞赛，适合查资讯、培训和作品参考。" },
+  { name: "全国大学生电子设计竞赛", url: "https://www.nuedc-training.com.cn/", tags: ["competition"], icon: "电赛", description: "电子信息核心竞赛，适合查资讯、培训和作品参考。" },
   { name: "全国大学生智能汽车竞赛", url: "https://zhuoqing.blog.csdn.net/", tags: ["competition"], icon: "智能车", description: "卓晴老师博客，智能汽车竞赛规则、技术文档与经验。" },
   { name: "ACM/ICPC", url: "https://icpc.global/", tags: ["competition"], icon: "ACM", description: "适合看程序设计竞赛规则、区域赛和训练资源。" },
   { name: "RoboMaster 机甲大师赛", url: "https://www.robomaster.com/", tags: ["competition"], icon: "RM", description: "适合看机器人、视觉、嵌入式和工程踩坑经验。" },
-  { name: "全国大学生机器人大赛", url: "http://www.robotcontest.cn/", tags: ["competition"], icon: "机器", description: "适合看机器人相关竞赛和项目实战经验。" },
+  { name: "全国大学生机器人大赛", url: "https://www.cnrobocon.net/", tags: ["competition"], icon: "机器", description: "ROBOCON 赛事官网，适合查机器人竞赛规则、培训和作品参考。" },
   { name: "蓝桥杯", url: "https://dasai.lanqiao.cn/", tags: ["competition"], icon: "蓝", description: "适合看嵌入式、软件类竞赛和训练内容。" },
   { name: "赛氪", url: "https://www.saikr.com/", tags: ["competition"], icon: "赛", description: "适合找大学生竞赛、科创比赛和项目实践机会。" },
 
