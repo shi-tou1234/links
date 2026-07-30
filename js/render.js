@@ -1,5 +1,6 @@
 /* ==========================================================================
    render.js — buildCard（含变体与收藏按钮）+ renderCards + renderSkeletons + renderStats + toggleFavorite
+   卡片视觉融合 31604c 的 banner+body+footer 结构与当前瀑布流/收藏/尺寸变体
    ========================================================================== */
 const cardGrid = document.getElementById("cardGrid");
 const coverStats = document.getElementById("coverStats");
@@ -23,10 +24,20 @@ function toggleFavorite(url, btn) {
   if (typeof window.updateFavoritesCount === "function") {
     window.updateFavoritesCount();
   }
-  // 修复：若当前处于收藏筛选模式，实时刷新列表（取消收藏后移除卡片，添加后保留）
+  // 若当前处于收藏筛选模式，实时刷新列表（取消收藏后移除卡片）
   if (typeof window.getCurrentFilter === "function" && window.getCurrentFilter() === "favorites") {
     window.setActiveFilter("favorites");
   }
+}
+
+/* ===== 通用：收藏按钮 ===== */
+function createFavButton(isFav) {
+  const favBtn = document.createElement("button");
+  favBtn.type = "button";
+  favBtn.className = "nav-card__fav" + (isFav ? " is-favorite" : "");
+  favBtn.setAttribute("aria-label", isFav ? "取消收藏" : "收藏");
+  favBtn.innerHTML = '<svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>';
+  return favBtn;
 }
 
 /* ===== 单卡构建（含尺寸变体与收藏按钮） ===== */
@@ -41,38 +52,18 @@ function buildCard(item, index) {
   card.href = item.url;
   card.target = "_blank";
   card.rel = "noopener noreferrer";
-
-  // 类名：所有卡片统一为彩色渐变，featured 优先级最高保留特殊样式
-  if (featured) {
-    card.className = "nav-card nav-card--gradient nav-card--featured post-card-reveal";
-  } else {
-    card.className = `nav-card nav-card--gradient nav-card--${size} post-card-reveal`;
-  }
+  card.className = featured
+    ? `nav-card nav-card--featured nav-card--${size} post-card-reveal`
+    : `nav-card nav-card--${size} post-card-reveal`;
   card.setAttribute("data-card-reveal", "");
   card.style.setProperty("--card-reveal-delay", `${Math.min(index, 12) * 50}ms`);
-  card.style.background = gradient;
 
   // will-change 仅在 hover 时临时启用，避免常驻开销
-  card.addEventListener("mouseenter", () => {
-    card.style.willChange = "transform, box-shadow";
-  });
-  card.addEventListener("mouseleave", () => {
-    card.style.willChange = "";
-  });
+  card.addEventListener("mouseenter", () => { card.style.willChange = "transform, box-shadow"; });
+  card.addEventListener("mouseleave", () => { card.style.willChange = ""; });
 
-  // 光泽扫过（仅主卡）
-  if (featured) {
-    const sheen = document.createElement("span");
-    sheen.className = "nav-card__sheen";
-    card.appendChild(sheen);
-  }
-
-  // 收藏按钮（星标）
-  const favBtn = document.createElement("button");
-  favBtn.type = "button";
-  favBtn.className = "nav-card__fav" + (isFav ? " is-favorite" : "");
-  favBtn.setAttribute("aria-label", isFav ? "取消收藏" : "收藏");
-  favBtn.innerHTML = '<svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>';
+  // 收藏按钮（固定显示）
+  const favBtn = createFavButton(isFav);
   favBtn.addEventListener("click", (e) => {
     e.preventDefault();
     e.stopPropagation();
@@ -80,44 +71,99 @@ function buildCard(item, index) {
   });
   card.appendChild(favBtn);
 
-  // 头部：图标 + 箭头
-  const head = document.createElement("div");
-  head.className = "nav-card__head";
+  if (featured) {
+    /* Featured 卡：整卡渐变（截图中 MDN 样式） */
+    card.style.background = gradient;
 
-  const icon = document.createElement("span");
-  icon.className = "nav-card__icon";
-  icon.textContent = item.icon || item.name.slice(0, 2);
-  head.appendChild(icon);
+    const sheen = document.createElement("span");
+    sheen.className = "nav-card__sheen";
+    card.appendChild(sheen);
 
-  const arrow = document.createElement("span");
-  arrow.className = "nav-card__arrow";
-  arrow.setAttribute("aria-hidden", "true");
-  arrow.innerHTML = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>';
-  head.appendChild(arrow);
-  card.appendChild(head);
+    const head = document.createElement("div");
+    head.className = "nav-card__head";
 
-  // 名称
-  const name = document.createElement("div");
-  name.className = "nav-card__name";
-  name.textContent = item.name;
-  card.appendChild(name);
+    const icon = document.createElement("span");
+    icon.className = "nav-card__icon";
+    icon.textContent = item.icon || item.name.slice(0, 2);
+    head.appendChild(icon);
 
-  // 描述
-  const desc = document.createElement("p");
-  desc.className = "nav-card__desc";
-  desc.textContent = item.description;
-  card.appendChild(desc);
+    const arrow = document.createElement("span");
+    arrow.className = "nav-card__arrow";
+    arrow.setAttribute("aria-hidden", "true");
+    arrow.innerHTML = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>';
+    head.appendChild(arrow);
+    card.appendChild(head);
 
-  // 标签
-  const tagRow = document.createElement("div");
-  tagRow.className = "nav-card__tags";
-  item.tags.forEach(tag => {
-    const span = document.createElement("span");
-    span.className = "nav-card__tag";
-    span.textContent = TAG_LABELS[tag] || tag;
-    tagRow.appendChild(span);
-  });
-  card.appendChild(tagRow);
+    const name = document.createElement("div");
+    name.className = "nav-card__name";
+    name.textContent = item.name;
+    card.appendChild(name);
+
+    const desc = document.createElement("p");
+    desc.className = "nav-card__desc";
+    desc.textContent = item.description;
+    card.appendChild(desc);
+
+    const tagRow = document.createElement("div");
+    tagRow.className = "nav-card__tags";
+    item.tags.forEach(tag => {
+      const span = document.createElement("span");
+      span.className = "nav-card__tag";
+      span.textContent = TAG_LABELS[tag] || tag;
+      tagRow.appendChild(span);
+    });
+    card.appendChild(tagRow);
+  } else {
+    /* 普通卡：31604c 的 banner+body+footer 结构 + 当前尺寸变体 */
+    const banner = document.createElement("div");
+    banner.className = "nav-card__banner";
+    banner.style.background = gradient;
+
+    const sheen = document.createElement("span");
+    sheen.className = "nav-card__sheen";
+    banner.appendChild(sheen);
+
+    const icon = document.createElement("span");
+    icon.className = "nav-card__icon";
+    icon.textContent = item.icon || item.name.slice(0, 2);
+    banner.appendChild(icon);
+    card.appendChild(banner);
+
+    const body = document.createElement("div");
+    body.className = "nav-card__body";
+
+    const name = document.createElement("div");
+    name.className = "nav-card__name";
+    name.textContent = item.name;
+    body.appendChild(name);
+
+    const desc = document.createElement("p");
+    desc.className = "nav-card__desc";
+    desc.textContent = item.description;
+    body.appendChild(desc);
+
+    const footer = document.createElement("div");
+    footer.className = "nav-card__footer";
+
+    const tagRow = document.createElement("div");
+    tagRow.className = "nav-card__tags";
+    item.tags.forEach(tag => {
+      const span = document.createElement("span");
+      span.className = "nav-card__tag";
+      span.textContent = TAG_LABELS[tag] || tag;
+      tagRow.appendChild(span);
+    });
+    footer.appendChild(tagRow);
+
+    const arrow = document.createElement("span");
+    arrow.className = "nav-card__arrow";
+    arrow.setAttribute("aria-hidden", "true");
+    arrow.innerHTML = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>';
+    footer.appendChild(arrow);
+
+    body.appendChild(footer);
+    card.appendChild(body);
+  }
 
   return card;
 }
@@ -128,21 +174,16 @@ function renderCards(items) {
   emptyHint.style.display = items.length ? "none" : "block";
 }
 
-/* ===== 骨架屏：高低错落 ===== */
+/* ===== 骨架屏：banner + body 结构 ===== */
 function renderSkeletons() {
-  const heights = [
-    ["52%", "100%", "68%"],
-    ["45%", "100%", "100%", "58%"],
-    ["60%", "100%", "72%"],
-    ["48%", "100%", "100%", "64%"],
-    ["55%", "100%", "70%"],
-    ["42%", "100%", "100%", "60%"],
-  ];
-  cardGrid.innerHTML = heights.map(lines => `
+  cardGrid.innerHTML = Array.from({ length: 6 }).map(() => `
     <div class="skeleton-card" aria-hidden="true">
-      <div class="skeleton-card__dot"></div>
-      <div class="skeleton-card__line skeleton-card__line--title" style="width:${lines[0]};"></div>
-      ${lines.slice(1).map(w => `<div class="skeleton-card__line" style="width:${w};"></div>`).join("")}
+      <div class="skeleton-card__banner"></div>
+      <div class="skeleton-card__body">
+        <div class="skeleton-card__line skeleton-card__line--title"></div>
+        <div class="skeleton-card__line"></div>
+        <div class="skeleton-card__line skeleton-card__line--short"></div>
+      </div>
     </div>
   `).join("");
 }

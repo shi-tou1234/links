@@ -76,12 +76,15 @@
   }
   .filter-chip { flex: 0 0 auto; white-space: nowrap; }
 
-  /* 小屏单列：非 featured 卡片统一 padding，featured 保留其特殊样式 */
+  /* 小屏单列 */
   .masonry { columns: 1; }
   .masonry > * { margin-bottom: 18px; }
   .masonry > .nav-card--wide { margin-bottom: 22px; }
 
-  .nav-card:not(.nav-card--featured) { padding: 24px 22px 20px; }
+  /* 普通卡片整体无 padding，body 已处理；小屏仅微调 body padding */
+  .nav-card__body { padding: 28px 18px 16px; }
+  .nav-card--wide .nav-card__body { padding: 30px 20px 18px; }
+  .nav-card--compact .nav-card__body { padding: 24px 16px 12px; }
 
   .back-top { right: 16px; bottom: 16px; }
 }
