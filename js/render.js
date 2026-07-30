@@ -23,6 +23,10 @@ function toggleFavorite(url, btn) {
   if (typeof window.updateFavoritesCount === "function") {
     window.updateFavoritesCount();
   }
+  // 修复：若当前处于收藏筛选模式，实时刷新列表（取消收藏后移除卡片，添加后保留）
+  if (typeof window.getCurrentFilter === "function" && window.getCurrentFilter() === "favorites") {
+    window.setActiveFilter("favorites");
+  }
 }
 
 /* ===== 单卡构建（含尺寸变体与收藏按钮） ===== */
@@ -38,15 +42,15 @@ function buildCard(item, index) {
   card.target = "_blank";
   card.rel = "noopener noreferrer";
 
-  // 类名：featured 优先，去掉 standard/compact/wide 类名
+  // 类名：所有卡片统一为彩色渐变，featured 优先级最高保留特殊样式
   if (featured) {
-    card.className = "nav-card nav-card--featured post-card-reveal";
+    card.className = "nav-card nav-card--gradient nav-card--featured post-card-reveal";
   } else {
-    card.className = `nav-card nav-card--${size} post-card-reveal`;
+    card.className = `nav-card nav-card--gradient nav-card--${size} post-card-reveal`;
   }
   card.setAttribute("data-card-reveal", "");
   card.style.setProperty("--card-reveal-delay", `${Math.min(index, 12) * 50}ms`);
-  if (featured) card.style.background = gradient;
+  card.style.background = gradient;
 
   // will-change 仅在 hover 时临时启用，避免常驻开销
   card.addEventListener("mouseenter", () => {
@@ -83,7 +87,6 @@ function buildCard(item, index) {
   const icon = document.createElement("span");
   icon.className = "nav-card__icon";
   icon.textContent = item.icon || item.name.slice(0, 2);
-  if (!featured) icon.style.background = gradient;
   head.appendChild(icon);
 
   const arrow = document.createElement("span");

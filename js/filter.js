@@ -105,4 +105,5 @@ window.applyFilter = applyFilter;
 window.initFilterCounts = initFilterCounts;
 window.setActiveFilter = setActiveFilter;
 window.updateFavoritesCount = updateFavoritesCount;
+window.getCurrentFilter = () => currentFilter;
 window.filterButtons = filterButtons;
