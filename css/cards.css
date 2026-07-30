@@ -29,6 +29,7 @@
   align-items: flex-start;
   justify-content: space-between;
   gap: 10px;
+  padding-right: 38px; /* 为右上角收藏按钮留出空间，避免与箭头重叠 */
 }
 
 .nav-card__icon {
@@ -166,11 +167,17 @@
 
 .nav-card--gradient .nav-card__fav {
   color: rgba(255, 255, 255, 0.85);
+  background: rgba(0, 0, 0, 0.12);
 }
 
 .nav-card--gradient .nav-card__fav:hover {
-  background: rgba(255, 255, 255, 0.18);
+  background: rgba(0, 0, 0, 0.22);
   color: #fff;
+}
+
+.nav-card--gradient .nav-card__fav.is-favorite {
+  color: #fcd34d;
+  background: rgba(0, 0, 0, 0.18);
 }
 
 /* ---------- 收藏按钮 ---------- */
@@ -196,7 +203,6 @@
 .nav-card:hover .nav-card__fav { opacity: 1; transform: scale(1); }
 .nav-card__fav:hover { color: #f59e0b; background: color-mix(in srgb, #f59e0b 12%, transparent); }
 .nav-card__fav.is-favorite { opacity: 1; transform: scale(1); color: #f59e0b; }
-.nav-card--gradient .nav-card__fav.is-favorite { color: #fcd34d; }
 
 /* ---------- 尺寸变体：compact ---------- */
 .nav-card--compact {
