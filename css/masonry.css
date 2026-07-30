@@ -81,10 +81,10 @@
   .masonry > * { margin-bottom: 18px; }
   .masonry > .nav-card--wide { margin-bottom: 22px; }
 
-  /* 普通卡片整体无 padding，body 已处理；小屏仅微调 body padding */
-  .nav-card__body { padding: 28px 18px 16px; }
-  .nav-card--wide .nav-card__body { padding: 30px 20px 18px; }
-  .nav-card--compact .nav-card__body { padding: 24px 16px 12px; }
+  /* 小屏单列：整体微调 padding */
+  .nav-card { padding: 22px 20px 18px; }
+  .nav-card--wide { padding: 26px 22px 22px; }
+  .nav-card--compact { padding: 16px 18px 14px; }
 
   .back-top { right: 16px; bottom: 16px; }
 }

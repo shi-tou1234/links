@@ -52,7 +52,7 @@ const links = [
 
   // ── 竞赛/实验室/作品 ──
   { name: "全国大学生电子设计竞赛", url: "http://www.nuedc-training.com.cn/", tags: ["competition"], icon: "电赛", description: "电子信息核心竞赛，适合查资讯、培训和作品参考。" },
-  { name: "全国大学生智能汽车竞赛", url: "http://www.smartcar.org.cn/", tags: ["competition"], icon: "智能车", description: "适合看车模方案、传感器、视觉和竞赛经验。" },
+  { name: "全国大学生智能汽车竞赛", url: "https://zhuoqing.blog.csdn.net/", tags: ["competition"], icon: "智能车", description: "卓晴老师博客，智能汽车竞赛规则、技术文档与经验。" },
   { name: "ACM/ICPC", url: "https://icpc.global/", tags: ["competition"], icon: "ACM", description: "适合看程序设计竞赛规则、区域赛和训练资源。" },
   { name: "RoboMaster 机甲大师赛", url: "https://www.robomaster.com/", tags: ["competition"], icon: "RM", description: "适合看机器人、视觉、嵌入式和工程踩坑经验。" },
   { name: "全国大学生机器人大赛", url: "http://www.robotcontest.cn/", tags: ["competition"], icon: "机器", description: "适合看机器人相关竞赛和项目实战经验。" },
