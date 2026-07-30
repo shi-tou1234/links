@@ -160,7 +160,7 @@
                   box-shadow 0.52s cubic-bezier(0.16, 1, 0.3, 1),
                   border-color 0.3s ease,
                   background-color 0.3s ease,
-                  opacity 0.45s ease;
+                  opacity 0.32s ease;
       will-change: transform, opacity, box-shadow;
     }
 
@@ -554,7 +554,7 @@
         card.rel = "noopener noreferrer";
         card.className = "nav-card post-card-reveal";
         card.setAttribute("data-card-reveal", "");
-        card.style.setProperty("--card-reveal-delay", `${index * 95}ms`);
+        card.style.setProperty("--card-reveal-delay", `${index * 55}ms`);
         card.setAttribute("data-tags", item.tags.join(" "));
         card.setAttribute("data-keywords", `${item.name} ${item.description} ${item.tags.join(" ")}`.toLowerCase());
 
@@ -649,8 +649,8 @@
         },
         {
           root: null,
-          rootMargin: "0px 0px -12% 0px",
-          threshold: 0.08,
+          rootMargin: "0px 0px -4% 0px",
+          threshold: 0.01,
         },
       );
 
