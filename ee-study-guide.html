@@ -1,0 +1,660 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>电子信息常用网页链接指南</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg-color: #f8f0dd;
+      --text-color: #2c2416;
+      --link-color: #8b4513;
+      --button-hover-color: #f1e6d0;
+      --button-border-color: #e5d6b8;
+      --postcard-bg-color: #f7efd8;
+      --shadow-color: rgba(139, 69, 19, 0.12);
+      --selection-color: #fae2b5;
+    }
+
+    [data-theme="dark"] {
+      --bg-color: #1a1612;
+      --text-color: #e8ddd0;
+      --link-color: #e0a060;
+      --button-hover-color: #2a2420;
+      --button-border-color: #3d3428;
+      --postcard-bg-color: #241f18;
+      --shadow-color: rgba(0, 0, 0, 0.3);
+      --selection-color: #44361a;
+    }
+
+    * { box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      margin: 0;
+      background-color: var(--bg-color);
+      color: var(--text-color);
+      font-family: "Noto Serif SC", "Times New Roman", "STZhongsong", "Songti SC", serif;
+      line-height: 1.6;
+    }
+
+    ::selection {
+      background-color: var(--selection-color);
+      color: var(--text-color);
+    }
+
+    a { color: var(--link-color); text-decoration: none; }
+
+    .link-line {
+      color: inherit;
+      text-decoration: none;
+      position: relative;
+      display: inline-block;
+    }
+
+    .link-line::before {
+      content: "";
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      border-bottom-style: dotted;
+      border-bottom-width: 2px;
+      background: transparent;
+      transition: transform 0.3s ease;
+      transform-origin: right;
+      transform: scaleX(1);
+    }
+
+    .link-line:hover { color: var(--link-color); }
+
+    .link-line:hover::before {
+      transform-origin: right;
+      transform: scaleX(0);
+    }
+
+    .page-wrapper {
+      position: relative; min-height: 100vh; display: flex; flex-direction: column; display: flex; flex-direction: column;
+      background:
+        radial-gradient(circle at 20% 10%, rgba(139, 69, 19, 0.08), transparent 26%),
+        radial-gradient(circle at 78% 22%, rgba(184, 134, 11, 0.10), transparent 28%),
+        radial-gradient(circle at 55% 72%, rgba(120, 90, 50, 0.09), transparent 28%),
+        var(--bg-color);
+    }
+
+    [data-theme="dark"] .page-wrapper {
+      background:
+        radial-gradient(circle at 20% 10%, rgba(232, 221, 208, 0.07), transparent 28%),
+        radial-gradient(circle at 78% 22%, rgba(224, 160, 96, 0.09), transparent 28%),
+        radial-gradient(circle at 55% 72%, rgba(167, 139, 108, 0.07), transparent 28%),
+        var(--bg-color);
+    }
+
+    .page-particles {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .top-bar {
+      position: sticky;
+      top: 0;
+      z-index: 70;
+      backdrop-filter: blur(14px);
+      background: color-mix(in srgb, var(--bg-color) 82%, transparent);
+      border-bottom: 1px solid var(--button-border-color);
+    }
+
+    .cover-section {
+      position: relative;
+      z-index: 10;
+      max-width: 900px;
+      margin: 0 auto;
+      text-align: center;
+      padding: 62px 18px 22px;
+    }
+
+    .cover-section h1 {
+      margin: 0;
+      font-size: clamp(26px, 4.2vw, 38px);
+      font-weight: 700;
+    }
+
+    .cover-cursor {
+      display: inline-block;
+      color: var(--link-color);
+      animation: cursorBlink 1s steps(1) infinite;
+    }
+
+    @keyframes cursorBlink {
+      0%, 48% { opacity: 1; }
+      49%, 100% { opacity: 0; }
+    }
+
+    .nav-card {
+      position: relative;
+      width: 320px;
+      height: 210px;
+      border-radius: 10px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 0.75rem;
+      overflow: hidden;
+      transition: all 0.6s cubic-bezier(0.23, 1, 0.320, 1);
+      text-decoration: none;
+      cursor: pointer;
+      color: #fff;
+    }
+
+    .nav-card-icon {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+      transition: all 0.6s cubic-bezier(0.23, 1, 0.320, 1);
+      filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.15));
+    }
+
+    .nav-card-label {
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: #fff;
+      transition: all 0.6s cubic-bezier(0.23, 1, 0.320, 1);
+      text-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+    }
+
+    .nav-card:hover {
+      transform: rotate(-5deg) scale(1.1);
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+    }
+
+    .nav-card:hover .nav-card-icon,
+    .nav-card:hover .nav-card-label {
+      scale: 0;
+      opacity: 0;
+    }
+
+    .nav-card__content {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%) rotate(-45deg);
+      width: 100%;
+      height: 100%;
+      padding: 20px;
+      box-sizing: border-box;
+      background-color: var(--bg-color);
+      opacity: 0;
+      transition: all 0.6s cubic-bezier(0.23, 1, 0.320, 1);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      color: var(--text-color);
+    }
+
+    .nav-card:hover .nav-card__content {
+      transform: translate(-50%, -50%) rotate(0deg);
+      opacity: 1;
+    }
+
+    .nav-card__title {
+      margin: 0;
+      font-size: 24px;
+      font-weight: 700;
+      color: var(--text-color);
+    }
+
+    .nav-card__description {
+      margin: 10px 0 0;
+      font-size: 14px;
+      color: var(--text-color);
+      opacity: 0.7;
+      line-height: 1.4;
+    }
+
+    .nav-card-grid {`n      display: grid;`n      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));`n      gap: 28px;`n      padding: 1rem 1rem 2rem;`n      justify-items: center;`n    }
+
+    .filter-chip {
+      border: 1px solid var(--button-border-color);
+      background: var(--postcard-bg-color);
+      color: var(--text-color);
+      border-radius: 999px;
+      padding: 7px 13px;
+      cursor: pointer;
+      transition: background 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+    }
+
+    .filter-chip:hover, .filter-chip.active {
+      background: var(--button-hover-color);
+      border-color: var(--link-color);
+      color: var(--link-color);
+    }
+
+    .search-input {
+      width: 100%;
+      border: 1px solid var(--button-border-color);
+      background: var(--postcard-bg-color);
+      color: var(--text-color);
+      border-radius: 10px;
+      padding: 10px 14px;
+      outline: none;
+      transition: box-shadow 0.2s ease, border-color 0.2s ease;
+    }
+
+    .search-input:focus {
+      border-color: var(--link-color);
+      box-shadow: 0 0 0 4px rgba(139, 69, 19, 0.12);
+    }
+
+    [data-theme="dark"] .search-input:focus {
+      box-shadow: 0 0 0 4px rgba(224, 160, 96, 0.14);
+    }
+
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      border: 1px solid var(--button-border-color);
+      border-radius: 999px;
+      padding: 3px 10px;
+      font-size: 12px;
+      color: var(--text-color);
+      opacity: 0.85;
+    }
+
+    .back-top {
+      position: fixed;
+      right: 18px;
+      bottom: 18px;
+      z-index: 80;
+      border: 1px solid var(--button-border-color);
+      background: var(--postcard-bg-color);
+      color: var(--text-color);
+      border-radius: 999px;
+      width: 42px;
+      height: 42px;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      box-shadow: 0 6px 14px var(--shadow-color);
+      transition: transform 0.2s ease, background 0.2s ease;
+    }
+
+    .back-top:hover { transform: translateY(-2px); }
+    .back-top:active { transform: scale(0.96); }
+
+    .empty-hint {
+      display: none;
+      text-align: center;
+      padding: 48px 18px;
+      color: var(--text-color);
+      opacity: 0.75;
+    }
+
+    @media (max-width: 360px) {
+      .nav-card {
+        width: 100%;
+        max-width: 320px;
+        height: 190px;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+      }
+    }
+
+    .sr-only {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border-width: 0;
+    }
+  </style>
+</head>
+<body>
+  <div class="page-wrapper">
+    <canvas id="pageParticles" class="page-particles" aria-hidden="true"></canvas>
+
+    <header class="top-bar">
+      <div style="max-width: 1100px; margin: 0 auto; padding: 10px 14px; display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap;">
+        <div style="display: flex; align-items: center; gap: 10px;">
+          <span style="display: inline-grid; width: 30px; height: 30px; place-items: center; border-radius: 8px; color: #fff; background: linear-gradient(-45deg, hsl(28, 55%, 44%) 0%, hsl(40, 50%, 52%) 100%);">EE</span>
+          <span style="font-weight: 700;">电子信息常用资源</span>
+        </div>
+        <div style="display: flex; align-items: center; gap: 10px;">
+          <label class="sr-only" for="siteSearch">搜索资源</label>
+          <input id="siteSearch" class="search-input" placeholder="搜索站点、描述或分类..." style="width: min(100%, 260px);" />
+          <button id="themeToggle" class="filter-chip" title="切换主题" aria-label="切换深色/浅色主题">🌗 主题</button>
+        </div>
+      </div>
+    </header>
+
+    <section class="cover-section">
+      <h1>电子信息常用网页链接指南</h1>
+      <p style="margin: 10px auto 0; max-width: 640px; color: var(--text-color); opacity: 0.82;">
+        一份面向电子信息学生的常用国内站点索引，尽量选能直接访问、适合课设、竞赛、买件、查数据和写报告的方向。
+      </p>
+      <p style="margin: 14px auto 0; color: var(--text-color); opacity: 0.7;">
+        <span id="typewriterTarget">当前共整理多个常用站点，按分类整理，可直接跳转使用</span><span class="cover-cursor" aria-hidden="true">|</span>
+      </p>
+    </section>
+
+    <main style="position: relative; z-index: 10; max-width: 1180px; margin: 0 auto; padding: 18px 14px 120px; flex: 1 0 auto;">
+      <section style="display: flex; flex-wrap: wrap; gap: 10px; align-items: center; justify-content: center; margin-bottom: 18px;">
+        <button class="filter-chip active" data-filter="all">全部</button>
+        <button class="filter-chip" data-filter="components">买件/常用商城</button>
+        <button class="filter-chip" data-filter="datasheet">Datasheet/型号</button>
+        <button class="filter-chip" data-filter="pcb">原理图/PCB/开源硬件</button>
+        <button class="filter-chip" data-filter="learn">学习/课程/视频</button>
+        <button class="filter-chip" data-filter="tools">EDA/仿真/软件工具</button>
+        <button class="filter-chip" data-filter="community">社区/博客/资讯</button>
+        <button class="filter-chip" data-filter="competition">竞赛/实验室/作品</button>
+        <button class="filter-chip" data-filter="job">考研/求职/技能</button>
+      </section>
+
+      <p id="emptyHint" class="empty-hint">没有匹配的站点，试试更短的关键词或切换分类。</p>
+
+      <div id="cardGrid" class="nav-card-grid"></div>
+    </main>
+
+    <footer style="position: relative; z-index: 10; text-align: center; padding: 18px 14px 24px; color: var(--text-color); opacity: 0.7; font-size: 14px; flex-shrink: 0;">
+      建议收藏常用站点，按自己当前课设、实验、竞赛和求职阶段分批整理。
+    </footer>
+
+    <button id="backToTop" class="back-top" aria-label="回到顶部" title="回到顶部">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+        <polyline points="18 15 12 9 6 15"></polyline>
+      </svg>
+    </button>
+  </div>
+
+  <script>
+        const links = [
+      { name: "CSDN", url: "https://www.csdn.net/", tags: ["community", "learn"], icon: "CS", description: "查 bug、找代码片段、看嵌入式/C++/通信类文章和实战笔记。" },
+      { name: "掘金", url: "https://juejin.cn/", tags: ["community", "learn"], icon: "掘", description: "看工程化、前端、工具链、产品化实现和新人练手思路。" },
+      { name: "知乎", url: "https://www.zhihu.com/", tags: ["community", "learn"], icon: "知", description: "搜专业问题、竞赛经验、择业和入门路径讨论。" },
+      { name: "Bilibili", url: "https://www.bilibili.com/", tags: ["learn"], icon: "B", description: "看公开课、竞赛经验、仪器拆解、EDA 实操和项目演示。" },
+      { name: "GitHub", url: "https://github.com/", tags: ["community", "tools", "competition"], icon: "GH", description: "搜开源项目、看工程结构、学习作品和找 idea。" },
+      { name: "Gitee", url: "https://gitee.com/", tags: ["community", "tools"], icon: "G", description: "托管课程项目、脚本、小工具和国内开源工程。" },
+      { name: "小芯半导体", url: "https://www.xchip.cn/", tags: ["datasheet", "components"], icon: "芯", description: "查芯片资料、中文 datasheet、替代料和选型信息。" },
+      { name: "立创商城", url: "https://www.szlcsc.com/", tags: ["components", "pcb"], icon: "立", description: "买元器件、模块、开发板，以及 PCB 打样/SMT 常用。" },
+      { name: "嘉立创", url: "https://www.jlc.com/", tags: ["pcb", "components"], icon: "嘉", description: "PCB 打样、SMT、PCBA、3D 打印，课设和小批量都常用。" },
+      { name: "华秋电子", url: "https://www.hqew.com/", tags: ["components", "pcb"], icon: "华", description: "元器件商城和 PCB 服务较全，方便从原理图到板子。" },
+      { name: "贸泽电子", url: "https://www.mouser.cn/", tags: ["components", "datasheet"], icon: "M", description: "查原厂芯片、参考设计和器件选型说明。" },
+      { name: "ST 意法半导体", url: "https://www.st.com/", tags: ["datasheet", "competition"], icon: "ST", description: "查 STM32 官方手册、参考设计、工具和例程首选。" },
+      { name: "NXP 官方", url: "https://www.nxp.com/", tags: ["datasheet", "competition"], icon: "NX", description: "查 i.MX、Kinetis、射频和汽车电子资料。" },
+      { name: "英飞凌", url: "https://www.infineon.com/", tags: ["datasheet", "competition"], icon: "IF", description: "查功率器件、驱动和电源管理方案。" },
+      { name: "瑞萨电子", url: "https://www.renesas.cn/", tags: ["datasheet", "competition"], icon: "瑞", description: "看 MCU、汽车电子和工业控制方案资料。" },
+      { name: "立创EDA", url: "https://lceda.cn/", tags: ["pcb", "tools"], icon: "EDA", description: "在线原理图和 PCB 工具，适合快速出课程设计板。" },
+      { name: "KiCad", url: "https://www.kicad.org/", tags: ["pcb", "tools"], icon: "K", description: "开源 PCB 工具，适合从原理图到 PCB 全流程练习。" },
+      { name: "Multisim", url: "https://www.ni.com/multisim", tags: ["tools"], icon: "M", description: "适合电路仿真、模电/数电实验验证和教学演示。" },
+      { name: "Proteus", url: "https://www.labcenter.com/", tags: ["tools"], icon: "P", description: "适合单片机仿真、简单电路验证和入门实验。" },
+      { name: "MATLAB", url: "https://www.mathworks.com/products/matlab.html", tags: ["tools"], icon: "MA", description: "适合信号处理、控制系统和算法仿真练习。" },
+      { name: "Keil MDK", url: "https://www.keil.com/", tags: ["tools", "competition"], icon: "K", description: "适合 STM32 开发和单片机课程实验使用。" },
+      { name: "IAR EW", url: "https://www.iar.com/", tags: ["tools", "competition"], icon: "I", description: "适合嵌入式编译、调试和工程稳定性练习。" },
+      { name: "VS Code", url: "https://code.visualstudio.com/", tags: ["tools"], icon: "VS", description: "适合写代码、做文档、运行脚本和开发小工具。" },
+      { name: "Git for Windows", url: "https://gitforwindows.org/", tags: ["tools"], icon: "G", description: "适合本地版本控制、脚本管理和工程协作习惯养成。" },
+      { name: "正点原子", url: "https://www.alientek.com/", tags: ["learn", "competition"], icon: "正", description: "STM32 和 Linux 嵌入式学习资料、例程和板卡参考。" },
+      { name: "野火电子", url: "https://www.firebbs.cn/", tags: ["learn", "community"], icon: "野", description: "嵌入式入门、RTOS、Linux 和项目实战经验集中。" },
+      { name: "韦东山嵌入式", url: "https://www.100ask.net/", tags: ["learn", "competition"], icon: "韦", description: "嵌入式 Linux、驱动和项目实战课程较系统。" },
+      { name: "中国大学 MOOC", url: "https://www.icourse163.org/", tags: ["learn"], icon: "M", description: "适合补电路、信号、嵌入式、Python 和通信类基础。" },
+      { name: "学堂在线", url: "https://www.xuetangx.com/", tags: ["learn"], icon: "学", description: "适合看高校公开课和电子相关专业基础课。" },
+      { name: "泰克科技", url: "https://www.tek.com.cn/", tags: ["learn", "competition"], icon: "泰", description: "看示波器、探头和测试测量资料。" },
+      { name: "是德科技", url: "https://www.keysight.com.cn/", tags: ["learn", "competition"], icon: "是", description: "看射频、仪器和测试测量资料。" },
+      { name: "普源精电", url: "https://www.rigol.com.cn/", tags: ["learn", "competition"], icon: "普", description: "看示波器、信号源和国产仪器资料。" },
+      { name: "全国大学生电子设计竞赛", url: "http://www.nuedc-training.com.cn/", tags: ["competition"], icon: "电赛", description: "电子信息核心竞赛，适合查资讯、培训和作品参考。" },
+      { name: "全国大学生智能汽车竞赛", url: "http://www.smartcar.org.cn/", tags: ["competition"], icon: "智能车", description: "适合看车模方案、传感器、视觉和竞赛经验。" },
+      { name: "ACM/ICPC", url: "https://icpc.global/", tags: ["competition"], icon: "ACM", description: "适合看程序设计竞赛规则、区域赛和训练资源。" },
+      { name: "RoboMaster 机甲大师赛", url: "https://www.robomaster.com/", tags: ["competition"], icon: "RM", description: "适合看机器人、视觉、嵌入式和工程踩坑经验。" },
+      { name: "全国大学生机器人大赛", url: "http://www.robotcontest.cn/", tags: ["competition"], icon: "机器", description: "适合看机器人相关竞赛和项目实战经验。" },
+      { name: "蓝桥杯", url: "https://dasai.lanqiao.cn/", tags: ["competition"], icon: "蓝", description: "适合看嵌入式、软件类竞赛和训练内容。" },
+      { name: "赛氪", url: "https://www.saikr.com/", tags: ["competition"], icon: "赛", description: "适合找大学生竞赛、科创比赛和项目实践机会。" },
+      { name: "知网", url: "https://www.cnki.net/", tags: ["learn", "job"], icon: "知", description: "适合查论文、写毕设和整理文献综述。" },
+      { name: "LeetCode", url: "https://leetcode.cn/", tags: ["learn", "job"], icon: "L", description: "适合打基础、补算法和准备笔试面试。" },
+      { name: "牛客网", url: "https://www.nowcoder.com/", tags: ["learn", "job"], icon: "牛", description: "适合看校招、笔试、面试和求职经验。" },
+      { name: "极客时间", url: "https://time.geekbang.org/", tags: ["learn", "job"], icon: "极", description: "适合看系统化专栏和工程进阶课程。" },
+      { name: "菜鸟教程", url: "https://www.runoob.com/", tags: ["learn", "tools"], icon: "菜", description: "适合快速入门语言、工具和基础概念。" },
+      { name: "MDN Web Docs", url: "https://developer.mozilla.org/", tags: ["learn", "tools"], icon: "M", description: "适合查前端、网络和 Web 开发权威资料。" },
+      { name: "Stack Overflow", url: "https://stackoverflow.com/", tags: ["community", "learn"], icon: "S", description: "适合查编程问题、报错和工程实现细节。" }
+    ];
+;
+
+    const uniqueLinks = [];
+    const seen = new Set();
+    for (const item of links) {
+      if (!seen.has(item.url)) {
+        seen.add(item.url);
+        uniqueLinks.push(item);
+      }
+    }
+
+    const cardGrid = document.getElementById("cardGrid");
+    const siteSearch = document.getElementById("siteSearch");
+    const emptyHint = document.getElementById("emptyHint");
+    const themeToggle = document.getElementById("themeToggle");
+    const backToTop = document.getElementById("backToTop");
+
+    const gradients = [
+      "linear-gradient(-45deg, hsl(235, 25%, 58%) 0%, hsl(275, 22%, 52%) 100%)",
+      "linear-gradient(-45deg, hsl(165, 25%, 55%) 0%, hsl(195, 22%, 55%) 100%)",
+      "linear-gradient(-45deg, hsl(25, 55%, 52%) 0%, hsl(45, 50%, 50%) 100%)",
+      "linear-gradient(-45deg, hsl(141, 45%, 46%) 0%, hsl(181, 42%, 42%) 100%)",
+      "linear-gradient(-45deg, hsl(210, 40%, 52%) 0%, hsl(240, 30%, 50%) 100%)",
+      "linear-gradient(-45deg, hsl(340, 35%, 54%) 0%, hsl(20, 40%, 52%) 100%)",
+    ];
+
+    function hashColor(str) {
+      let h = 0;
+      for (let i = 0; i < str.length; i++) {
+        h = (h * 31 + str.charCodeAt(i)) | 0;
+      }
+      return gradients[(Math.abs(h) + 7) % gradients.length];
+    }
+
+    function renderCards(items) {
+      cardGrid.innerHTML = "";
+      items.forEach((item, index) => {
+        const card = document.createElement("a");
+        card.href = item.url;
+        card.target = "_blank";
+        card.rel = "noopener noreferrer";
+        card.className = "nav-card";
+        card.setAttribute("data-tags", item.tags.join(" "));
+        card.setAttribute("data-keywords", `${item.name} ${item.description} ${item.tags.join(" ")}`.toLowerCase());
+
+        const icon = document.createElement("span");
+        icon.className = "nav-card-icon";
+        icon.textContent = item.icon || item.name.slice(0, 2);
+        icon.style.background = "transparent";
+
+        const label = document.createElement("span");
+        label.className = "nav-card-label";
+        label.textContent = item.name;
+
+        const content = document.createElement("div");
+        content.className = "nav-card__content";
+
+        const title = document.createElement("div");
+        title.className = "nav-card__title";
+        title.textContent = item.name;
+
+        const desc = document.createElement("p");
+        desc.className = "nav-card__description";
+        desc.textContent = item.description;
+
+        const tagRow = document.createElement("div");
+        tagRow.style.display = "flex";
+        tagRow.style.flexWrap = "wrap";
+        tagRow.style.gap = "8px";
+        item.tags.forEach(tag => {
+          const span = document.createElement("span");
+          span.className = "pill";
+          span.style.background = "var(--bg-color)";
+          span.textContent = tag;
+          tagRow.appendChild(span);
+        });
+
+        content.appendChild(title);
+        content.appendChild(desc);
+        content.appendChild(tagRow);
+
+        const bg = document.createElement("span");
+        bg.style.position = "absolute";
+        bg.style.inset = "0";
+        bg.style.background = item.color || hashColor(item.url);
+        bg.style.zIndex = "-1";
+
+        card.appendChild(bg);
+        card.appendChild(icon);
+        card.appendChild(label);
+        card.appendChild(content);
+        cardGrid.appendChild(card);
+      });
+
+      emptyHint.style.display = items.length ? "none" : "block";
+    }
+
+    function applyFilter(filter, keyword = "") {
+      const kw = keyword.trim().toLowerCase();
+      const filtered = uniqueLinks.filter(item => {
+        const matchesFilter = filter === "all" || item.tags.includes(filter);
+        const matchesKeyword = !kw || item.name.toLowerCase().includes(kw) || item.description.toLowerCase().includes(kw) || item.tags.some(tag => tag.includes(kw));
+        return matchesFilter && matchesKeyword;
+      });
+      renderCards(filtered);
+    }
+
+    let currentFilter = "all";
+    document.querySelectorAll("[data-filter]").forEach(button => {
+      button.addEventListener("click", () => {
+        document.querySelectorAll("[data-filter]").forEach(b => b.classList.remove("active"));
+        button.classList.add("active");
+        currentFilter = button.dataset.filter;
+        applyFilter(currentFilter, siteSearch.value);
+      });
+    });
+
+    siteSearch.addEventListener("input", () => applyFilter(currentFilter, siteSearch.value));
+
+    const typewriterTexts = [
+      "当前共整理多个常用站点，按分类整理，可直接跳转使用",
+      "适合查芯片、EDA、课程、竞赛、求职和日常学习资料",
+      "建议配合课设、实验、竞赛和求职阶段分批收藏",
+    ];
+    const typewriterTarget = document.getElementById("typewriterTarget");
+    let phraseIndex = 0;
+    let charIndex = 0;
+    let isDeleting = false;
+
+    function typeWriter() {
+      const current = typewriterTexts[phraseIndex % typewriterTexts.length];
+      if (!isDeleting) {
+        typewriterTarget.textContent = current.slice(0, charIndex + 1);
+        charIndex += 1;
+        if (charIndex === current.length) {
+          setTimeout(() => { isDeleting = true; typeWriter(); }, 1400);
+          return;
+        }
+      } else {
+        typewriterTarget.textContent = current.slice(0, charIndex - 1);
+        charIndex -= 1;
+        if (charIndex === 0) {
+          isDeleting = false;
+          phraseIndex += 1;
+        }
+      }
+      setTimeout(typeWriter, isDeleting ? 30 : 65);
+    }
+
+    function initParticles() {
+      const canvas = document.getElementById("pageParticles");
+      if (!canvas || window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+        return;
+      }
+      const ctx = canvas.getContext("2d");
+      const resize = () => {
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+      };
+      resize();
+      window.addEventListener("resize", resize);
+      const particles = Array.from({ length: 38 }).map(() => ({
+        x: Math.random() * canvas.width,
+        y: Math.random() * canvas.height,
+        radius: Math.random() * 1.3 + 0.6,
+        speedX: (Math.random() - 0.5) * 0.25,
+        speedY: (Math.random() - 0.5) * 0.25,
+        opacity: Math.random() * 0.22 + 0.08,
+      }));
+      const draw = () => {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        const color = document.documentElement.getAttribute("data-theme") === "dark" ? "234, 221, 208" : "120, 95, 65";
+        particles.forEach(p => {
+          p.x += p.speedX;
+          p.y += p.speedY;
+          if (p.x < -20) p.x = canvas.width + 20;
+          if (p.x > canvas.width + 20) p.x = -20;
+          if (p.y < -20) p.y = canvas.height + 20;
+          if (p.y > canvas.height + 20) p.y = -20;
+          ctx.beginPath();
+          ctx.fillStyle = `rgba(${color}, ${p.opacity})`;
+          ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
+          ctx.fill();
+        });
+        requestAnimationFrame(draw);
+      };
+      draw();
+    }
+
+    function applyTheme() {
+      const saved = localStorage.getItem("ee-guide-theme");
+      const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+      const theme = saved ? saved : prefersDark ? "dark" : "light";
+      document.documentElement.setAttribute("data-theme", theme);
+      themeToggle.textContent = theme === "dark" ? "☀️ 主题" : "🌗 主题";
+    }
+
+    themeToggle.addEventListener("click", () => {
+      const current = document.documentElement.getAttribute("data-theme");
+      const next = current === "dark" ? "light" : "dark";
+      localStorage.setItem("ee-guide-theme", next);
+      applyTheme();
+    });
+
+    window.addEventListener("scroll", () => {
+      backToTop.style.display = window.scrollY > 380 ? "flex" : "none";
+    });
+
+    backToTop.addEventListener("click", () => {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    });
+
+    applyTheme();
+    initParticles();
+    renderCards(uniqueLinks);
+    setTimeout(typeWriter, 400);
+  </script>
+</body>
+</html>
+
+
+
