@@ -97,23 +97,24 @@
 :root .theme-icon-moon {
   stroke: #ffffff;
   stroke-width: 2.2;
+  display: none;
 }
 
 /* 深色模式下月亮图标更粗 + 淡光晕，保证在深色背景上足够清晰 */
 [data-theme="dark"] .theme-icon-moon {
+  display: inline;
   stroke: #ffffff;
   stroke-width: 2.5;
   filter: drop-shadow(0 0 4px rgba(165, 168, 255, 0.55));
 }
 
 /* 浅色模式下太阳图标用深紫色，避免与浅色背景对比度不足 */
-:not([data-theme="dark"]) .theme-icon-sun {
+:root .theme-icon-sun {
   stroke: var(--link-color);
   stroke-width: 2.2;
 }
 
 [data-theme="dark"] .theme-icon-sun { display: none; }
-:not([data-theme="dark"]) .theme-icon-moon { display: none; }
 
 /* ---------- 筛选 chip ---------- */
 .filter-chip {
