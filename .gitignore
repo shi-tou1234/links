@@ -16,6 +16,9 @@ npm-debug.log*
 # Trae spec / cache
 .trae/
 
+# Mimosa session state
+.mimosa/
+
 # Build
 node_modules/
 dist/

@@ -1,5 +1,5 @@
 /* ==========================================================================
-   Cards — 所有卡片统一为整卡渐变（featured 风格）+ 尺寸变体 + 收藏按钮
+   Cards — glass morphism + rainbow hover glow + icon rotation + sheen
    ========================================================================== */
 
 /* ---------- 基础卡片 ---------- */
@@ -9,23 +9,64 @@
   flex-direction: column;
   gap: 10px;
   padding: 26px 26px 22px;
-  border-radius: var(--radius-card);
+  border-radius: 20px;
   overflow: hidden;
   text-decoration: none;
   cursor: pointer;
-  background: var(--postcard-bg-color);
-  box-shadow: var(--shadow-rest);
+  color: #fff;
+  background: rgba(255, 255, 255, 0.07);
+  backdrop-filter: blur(20px) saturate(140%);
+  -webkit-backdrop-filter: blur(20px) saturate(140%);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  box-shadow:
+    0 8px 32px rgba(0, 0, 0, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.15);
   transform: translate3d(0, 0, 0);
-  transition: transform 0.5s var(--ease-out),
-              box-shadow 0.5s var(--ease-out),
-              background 0.3s ease,
+  transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1),
+              box-shadow 0.5s cubic-bezier(0.16, 1, 0.3, 1),
+              border-color 0.3s ease,
               opacity 0.4s ease;
-  /* will-change 由 JS 在 hover 时临时添加，避免常驻开销 */
 }
 
-/* 所有卡片统一白字渐变 */
-.nav-card--gradient {
-  color: #fff;
+/* 悬停渐变高光 */
+.nav-card::before {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  background: linear-gradient(135deg, rgba(255, 90, 160, 0.25), rgba(120, 80, 255, 0.25), rgba(14, 165, 233, 0.20), rgba(245, 158, 11, 0.15));
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  pointer-events: none;
+  border-radius: 21px;
+  z-index: -1;
+}
+/* 悬停外发光边框 */
+.nav-card::after {
+  content: '';
+  position: absolute;
+  inset: -2px;
+  border-radius: 22px;
+  background: linear-gradient(135deg, #ff5aa0, #7850ff, #0ea5e9, #f59e0b);
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  pointer-events: none;
+  z-index: -2;
+  filter: blur(8px);
+}
+.nav-card:hover::before { opacity: 1; }
+.nav-card:hover::after { opacity: 0.5; }
+.nav-card:hover {
+  transform: translate3d(0, -14px, 0) scale(1.04);
+  border-color: transparent;
+  box-shadow:
+    0 30px 70px rgba(120, 80, 255, 0.3),
+    0 12px 30px rgba(255, 90, 160, 0.15),
+    0 4px 12px rgba(0, 0, 0, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.3);
+}
+.nav-card:active {
+  transform: translate3d(0, -4px, 0) scale(1.01);
+  transition-duration: 0.1s;
 }
 
 /* ---------- 头部：图标 + 箭头 ---------- */
@@ -34,10 +75,9 @@
   align-items: flex-start;
   justify-content: space-between;
   gap: 10px;
-  padding-right: 38px; /* 为右上角收藏按钮留出空间 */
+  padding-right: 38px;
 }
 
-/* 玻璃拟态图标 */
 .nav-card__icon {
   display: flex;
   align-items: center;
@@ -49,39 +89,41 @@
   font-weight: 800;
   color: #fff;
   text-shadow: 0 1px 3px rgba(0, 0, 0, 0.22);
-  background: rgba(255, 255, 255, 0.18);
-  border: 1px solid rgba(255, 255, 255, 0.42);
+  background: rgba(255, 255, 255, 0.16);
+  border: 1px solid rgba(255, 255, 255, 0.3);
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
-  box-shadow: 0 10px 24px rgba(15, 16, 32, 0.22), inset 0 1px 0 rgba(255, 255, 255, 0.32);
-  transition: transform 0.5s var(--ease-out), box-shadow 0.4s ease;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+  transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s ease;
   flex-shrink: 0;
 }
-
 .nav-card:hover .nav-card__icon {
-  transform: translateY(-4px) scale(1.05);
-  box-shadow: 0 16px 30px rgba(15, 16, 32, 0.30), inset 0 1px 0 rgba(255, 255, 255, 0.38);
+  transform: translateY(-8px) scale(1.15) rotate(-3deg);
+  box-shadow:
+    0 20px 40px rgba(120, 80, 255, 0.35),
+    0 0 20px rgba(255, 90, 160, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.4);
 }
 
-/* 箭头 */
 .nav-card__arrow {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 30px;
-  height: 30px;
+  width: 32px;
+  height: 32px;
   border-radius: 999px;
   color: #fff;
   background: rgba(255, 255, 255, 0.20);
   opacity: 0;
   transform: translateX(-8px) scale(0.85);
-  transition: opacity 0.3s ease, transform 0.45s var(--ease-out);
+  transition: opacity 0.3s ease, transform 0.45s cubic-bezier(0.16, 1, 0.3, 1), background 0.3s ease, box-shadow 0.3s ease;
   flex-shrink: 0;
 }
-
 .nav-card:hover .nav-card__arrow {
   opacity: 1;
   transform: translateX(0) scale(1);
+  background: rgba(255, 90, 160, 0.3);
+  box-shadow: 0 4px 20px rgba(255, 90, 160, 0.35);
 }
 
 /* ---------- 文本 ---------- */
@@ -91,19 +133,19 @@
   line-height: 1.4;
   color: #fff;
   letter-spacing: 0.01em;
-  text-shadow: 0 1px 4px rgba(15, 16, 32, 0.25);
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.15);
 }
 
 .nav-card__desc {
   margin: 0;
   font-size: 13.5px;
   line-height: 1.75;
-  color: rgba(255, 255, 255, 0.88);
+  color: rgba(255, 255, 255, 0.82);
   display: -webkit-box;
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
   overflow: hidden;
-  text-shadow: 0 1px 2px rgba(15, 16, 32, 0.12);
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.08);
 }
 
 /* ---------- 标签 ---------- */
@@ -113,7 +155,6 @@
   gap: 6px;
   margin-top: 2px;
 }
-
 .nav-card__tag {
   display: inline-flex;
   align-items: center;
@@ -121,30 +162,20 @@
   padding: 3px 11px;
   font-size: 11px;
   font-weight: 500;
-  color: rgba(255, 255, 255, 0.95);
-  background: rgba(255, 255, 255, 0.16);
-  border: 1px solid rgba(255, 255, 255, 0.22);
-  transition: color 0.25s ease, background 0.25s ease, border-color 0.25s ease;
+  color: rgba(255, 255, 255, 0.9);
+  background: rgba(255, 255, 255, 0.14);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  transition: color 0.25s ease, background 0.25s ease, border-color 0.25s ease, transform 0.25s ease, box-shadow 0.25s ease;
 }
-
 .nav-card:hover .nav-card__tag {
   color: #fff;
-  background: rgba(255, 255, 255, 0.26);
-  border-color: rgba(255, 255, 255, 0.36);
+  background: rgba(255, 90, 160, 0.2);
+  border-color: rgba(255, 180, 220, 0.5);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(255, 90, 160, 0.15);
 }
 
-/* ---------- Hover：抬升 + 阴影舒展 ---------- */
-.nav-card:hover {
-  transform: translate3d(0, -8px, 0) scale(1.02);
-  box-shadow: var(--shadow-hover);
-}
-
-.nav-card:active {
-  transform: translate3d(0, -2px, 0) scale(0.99);
-  transition-duration: 0.1s;
-}
-
-/* ---------- 收藏按钮（固定显示在右上角） ---------- */
+/* ---------- 收藏按钮 ---------- */
 .nav-card__fav {
   position: absolute;
   top: 14px;
@@ -156,173 +187,94 @@
   justify-content: center;
   border: none;
   border-radius: 999px;
-  background: rgba(255, 255, 255, 0.20);
-  color: rgba(255, 255, 255, 0.92);
+  background: rgba(255, 255, 255, 0.18);
+  color: rgba(255, 255, 255, 0.88);
   cursor: pointer;
   z-index: 4;
   opacity: 1;
   transform: scale(1);
-  transition: opacity 0.25s ease, transform 0.3s var(--ease-out), color 0.2s ease, background 0.2s ease;
+  transition: opacity 0.25s ease, transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), color 0.2s ease, background 0.2s ease;
   backdrop-filter: blur(6px);
   -webkit-backdrop-filter: blur(6px);
-  box-shadow: 0 2px 8px rgba(15, 16, 32, 0.12);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
+.nav-card__fav:hover { color: #f59e0b; background: rgba(255, 200, 50, 0.15); }
+.nav-card__fav.is-favorite { color: #f59e0b; background: rgba(255, 200, 50, 0.12); }
 
-.nav-card__fav:hover {
-  color: #f59e0b;
-  background: rgba(255, 255, 255, 0.34);
-}
+/* ---------- 尺寸变体 ---------- */
+.nav-card--compact { padding: 18px 20px 16px; gap: 6px; }
+.nav-card--compact .nav-card__icon { width: 42px; height: 42px; border-radius: 13px; font-size: 13px; }
+.nav-card--compact .nav-card__name { font-size: 15px; }
+.nav-card--compact .nav-card__tag { padding: 2px 8px; font-size: 10.5px; }
 
-.nav-card__fav.is-favorite {
-  color: #f59e0b;
-  background: rgba(255, 255, 255, 0.28);
-}
-
-/* ---------- 尺寸变体：compact ---------- */
-.nav-card--compact {
-  padding: 18px 20px 16px;
-  gap: 6px;
-}
-.nav-card--compact .nav-card__icon {
-  width: 42px;
-  height: 42px;
-  border-radius: 13px;
-  font-size: 13px;
-}
-.nav-card--compact .nav-card__name {
-  font-size: 15px;
-}
-.nav-card--compact .nav-card__desc {
-  -webkit-line-clamp: 2;
-}
-.nav-card--compact .nav-card__tag {
-  padding: 2px 8px;
-  font-size: 10.5px;
-}
-
-/* ---------- 尺寸变体：standard（默认） ---------- */
-.nav-card--standard { /* 使用 .nav-card 默认样式 */ }
-
-/* ---------- 尺寸变体：wide ---------- */
-.nav-card--wide {
-  padding: 32px 28px 28px;
-  gap: 12px;
-}
-.nav-card--wide .nav-card__icon {
-  width: 58px;
-  height: 58px;
-  border-radius: 17px;
-  font-size: 17px;
-}
-.nav-card--wide .nav-card__name {
-  font-size: 18px;
-}
-.nav-card--wide .nav-card__desc {
-  -webkit-line-clamp: 5;
-}
+.nav-card--wide { padding: 32px 28px 28px; gap: 12px; }
+.nav-card--wide .nav-card__icon { width: 58px; height: 58px; border-radius: 17px; font-size: 17px; }
+.nav-card--wide .nav-card__name { font-size: 18px; }
+.nav-card--wide .nav-card__desc { -webkit-line-clamp: 5; }
 
 /* ---------- 光泽扫过 ---------- */
 .nav-card__sheen {
   position: absolute;
   inset: 0;
-  background: linear-gradient(115deg, transparent 30%, rgba(255, 255, 255, 0.32) 50%, transparent 68%);
+  background: linear-gradient(115deg, transparent 20%, rgba(255, 255, 255, 0.4) 45%, rgba(255, 180, 220, 0.2) 55%, transparent 80%);
   transform: translateX(-110%);
-  transition: transform 0.9s var(--ease-out);
+  transition: transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
   pointer-events: none;
   z-index: 1;
 }
-
 .nav-card:hover .nav-card__sheen { transform: translateX(110%); }
-
-/* 确保内容在 sheen 之上 */
 .nav-card > * { position: relative; z-index: 2; }
 .nav-card > .nav-card__sheen { z-index: 1; }
 .nav-card > .nav-card__fav { z-index: 4; }
 
-/* ---------- Scroll-reveal（移除 filter: blur，仅 opacity + transform） ---------- */
+/* ---------- Scroll-reveal ---------- */
 .nav-card.post-card-reveal {
   opacity: 0;
   transform: translate3d(0, 26px, 0) scale(0.98);
 }
-
 .nav-card.post-card-reveal.is-visible {
   opacity: 1;
   transform: translateY(0) scale(1);
   transition-delay: var(--card-reveal-delay, 0ms);
 }
 
-/* ---------- 骨架屏 — 整卡渐变风格 ---------- */
+/* ---------- 骨架屏 ---------- */
 .skeleton-card {
   position: relative;
-  border-radius: var(--radius-card);
-  background: var(--postcard-bg-color);
-  box-shadow: var(--shadow-rest);
+  border-radius: 20px;
   padding: 26px 26px 22px;
   display: flex;
   flex-direction: column;
   gap: 10px;
   overflow: hidden;
+  background: rgba(255, 255, 255, 0.06);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.12);
 }
-
 .skeleton-card::before {
   content: "";
   position: absolute;
   inset: 0;
   background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 50%, #ec4899 100%);
-  opacity: 0.18;
+  opacity: 0.12;
   pointer-events: none;
 }
-
-.skeleton-card__head {
-  display: flex;
-  align-items: flex-start;
-  justify-content: space-between;
-  gap: 10px;
-  position: relative;
-  z-index: 1;
-}
-
-.skeleton-card__icon {
-  width: 50px;
-  height: 50px;
-  border-radius: 16px;
-  background: rgba(255, 255, 255, 0.25);
-}
-
-.skeleton-card__arrow {
-  width: 30px;
-  height: 30px;
-  border-radius: 999px;
-  background: rgba(255, 255, 255, 0.18);
-}
-
-.skeleton-card__line,
-.skeleton-card__tag {
-  background: linear-gradient(90deg,
-    rgba(255, 255, 255, 0.18) 25%,
-    rgba(255, 255, 255, 0.30) 50%,
-    rgba(255, 255, 255, 0.18) 75%);
+.skeleton-card__head { display: flex; align-items: flex-start; justify-content: space-between; gap: 10px; position: relative; z-index: 1; }
+.skeleton-card__icon { width: 50px; height: 50px; border-radius: 16px; background: rgba(255, 255, 255, 0.12); }
+.skeleton-card__arrow { width: 32px; height: 32px; border-radius: 999px; background: rgba(255, 255, 255, 0.08); }
+.skeleton-card__line, .skeleton-card__tag {
+  background: linear-gradient(90deg, rgba(255, 255, 255, 0.08) 25%, rgba(255, 255, 255, 0.18) 50%, rgba(255, 255, 255, 0.08) 75%);
   background-size: 200% 100%;
   animation: skeletonShimmer 1.4s ease-in-out infinite;
   position: relative;
   z-index: 1;
 }
-
 .skeleton-card__line { height: 13px; border-radius: 7px; }
 .skeleton-card__line--title { width: 52%; height: 17px; }
 .skeleton-card__line--short { width: 68%; }
-
-.skeleton-card__tags {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 6px;
-  margin-top: 2px;
-  position: relative;
-  z-index: 1;
-}
-
+.skeleton-card__tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 2px; position: relative; z-index: 1; }
 .skeleton-card__tag { width: 56px; height: 22px; border-radius: 999px; }
-
 @keyframes skeletonShimmer {
   0% { background-position: 200% 0; }
   100% { background-position: -200% 0; }

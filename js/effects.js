@@ -37,7 +37,7 @@ function initParticles() {
       return;
     }
     ctx.clearRect(0, 0, canvas.width, canvas.height);
-    const color = document.documentElement.getAttribute("data-theme") === "dark" ? "196, 199, 255" : "99, 102, 241";
+    const color = "196, 199, 255";
     particles.forEach(p => {
       p.x += p.speedX;
       p.y += p.speedY;
@@ -156,6 +156,50 @@ window.addEventListener("scroll", () => {
 backToTop.addEventListener("click", () => {
   window.scrollTo({ top: 0, behavior: "smooth" });
 });
+
+/* ===== 鼠标光晕跟随 ===== */
+const cursorGlow = document.getElementById("cursorGlow");
+if (cursorGlow) {
+  let glowX = window.innerWidth / 2;
+  let glowY = window.innerHeight / 2;
+  let targetX = glowX;
+  let targetY = glowY;
+
+  document.addEventListener("mousemove", (e) => {
+    targetX = e.clientX;
+    targetY = e.clientY;
+    cursorGlow.style.opacity = "1";
+  });
+  document.addEventListener("mouseleave", () => {
+    cursorGlow.style.opacity = "0";
+  });
+
+  function animateGlow() {
+    glowX += (targetX - glowX) * 0.1;
+    glowY += (targetY - glowY) * 0.1;
+    cursorGlow.style.transform = `translate(${glowX}px, ${glowY}px) translate(-50%, -50%)`;
+    requestAnimationFrame(animateGlow);
+  }
+  animateGlow();
+
+  if ("ontouchstart" in window) cursorGlow.style.display = "none";
+}
+
+/* ===== 滚动进度条 + 导航栏状态 ===== */
+const scrollProgress = document.getElementById("scrollProgress");
+const topBar = document.getElementById("topBar");
+function onScrollProgress() {
+  const scrollTop = window.scrollY;
+  const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+  if (scrollProgress) {
+    scrollProgress.style.width = Math.min(100, (scrollTop / Math.max(1, docHeight)) * 100) + "%";
+  }
+  if (topBar) {
+    topBar.classList.toggle("scrolled", scrollTop > 40);
+  }
+}
+window.addEventListener("scroll", onScrollProgress, { passive: true });
+onScrollProgress();
 
 /* 暴露到全局 */
 window.initParticles = initParticles;

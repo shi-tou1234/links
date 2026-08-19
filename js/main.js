@@ -14,4 +14,7 @@ document.addEventListener("DOMContentLoaded", () => {
     initPostCardReveal();
   }, 220);
   setTimeout(typeWriter, 400);
+  // Hero 卡片入场
+  const heroReveal = document.querySelector(".hero-card.reveal");
+  if (heroReveal) setTimeout(() => heroReveal.classList.add("in"), 100);
 });

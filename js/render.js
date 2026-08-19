@@ -52,8 +52,6 @@ function buildCard(item, index) {
   card.className = `nav-card nav-card--gradient nav-card--${size} post-card-reveal`;
   card.setAttribute("data-card-reveal", "");
   card.style.setProperty("--card-reveal-delay", `${Math.min(index, 12) * 50}ms`);
-  card.style.background = gradient;
-
   // will-change 仅在 hover 时临时启用
   card.addEventListener("mouseenter", () => { card.style.willChange = "transform, box-shadow"; });
   card.addEventListener("mouseleave", () => { card.style.willChange = ""; });

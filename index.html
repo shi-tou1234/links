@@ -6,59 +6,83 @@
   <title>电子信息常用网页链接指南</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Noto+Sans+SC:wght@400;500;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="css/main.css?v=7" />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&family=Noto+Sans+SC:wght@400;500;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/main.css?v=8" />
 </head>
 <body>
-  <div class="page-wrapper">
-    <canvas id="pageParticles" class="page-particles" aria-hidden="true"></canvas>
 
-    <header class="top-bar">
-      <div class="top-bar__inner">
-        <div class="brand">
-          <span class="brand__logo" aria-hidden="true">EE</span>
-          <span class="brand__name">电子信息常用资源</span>
-        </div>
-        <div class="top-bar__tools">
-          <div class="search-box" id="searchBox">
-            <span class="search-box__icon" aria-hidden="true">
-              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <circle cx="11" cy="11" r="8" /><line x1="21" y1="21" x2="16.65" y2="16.65" />
-              </svg>
-            </span>
-            <label class="sr-only" for="siteSearch">搜索资源</label>
-            <input id="siteSearch" class="search-input" placeholder="搜索站点、描述或分类..." autocomplete="off" />
-            <button type="button" class="search-box__clear" id="searchClear" aria-label="清空搜索">
-              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M18 6 6 18" /><path d="m6 6 12 12" />
-              </svg>
-            </button>
-          </div>
-          <button id="themeToggle" class="icon-button" title="切换深色/浅色主题" aria-label="切换深色/浅色主题">
-            <svg class="theme-icon-sun" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <circle cx="12" cy="12" r="5" /><path d="M12 1v2m0 18v2M4.22 4.22l1.42 1.42m12.72 12.72 1.42 1.42M1 12h2m18 0h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42" />
-            </svg>
-            <svg class="theme-icon-moon" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
-            </svg>
-          </button>
-        </div>
+  <!-- 背景层 -->
+  <div class="mesh-bg"></div>
+  <div class="grain"></div>
+  <div class="cursor-glow" id="cursorGlow"></div>
+  <div class="scroll-progress" id="scrollProgress"></div>
+  <canvas id="pageParticles" class="page-particles" aria-hidden="true"></canvas>
+
+  <!-- 顶栏 -->
+  <header class="top-bar" id="topBar">
+    <div class="brand">
+      <span class="brand__logo" aria-hidden="true">
+        <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect x="6" y="6" width="20" height="20" rx="4" stroke="white" stroke-width="1.8" fill="none"/>
+          <rect x="12" y="12" width="8" height="8" rx="1.5" fill="white" opacity="0.9"/>
+          <line x1="10" y1="3" x2="10" y2="6" stroke="white" stroke-width="1.5" stroke-linecap="round"/>
+          <line x1="16" y1="3" x2="16" y2="6" stroke="white" stroke-width="1.5" stroke-linecap="round"/>
+          <line x1="22" y1="3" x2="22" y2="6" stroke="white" stroke-width="1.5" stroke-linecap="round"/>
+          <line x1="10" y1="26" x2="10" y2="29" stroke="white" stroke-width="1.5" stroke-linecap="round"/>
+          <line x1="16" y1="26" x2="16" y2="29" stroke="white" stroke-width="1.5" stroke-linecap="round"/>
+          <line x1="22" y1="26" x2="22" y2="29" stroke="white" stroke-width="1.5" stroke-linecap="round"/>
+          <line x1="3" y1="10" x2="6" y2="10" stroke="white" stroke-width="1.5" stroke-linecap="round"/>
+          <line x1="3" y1="16" x2="6" y2="16" stroke="white" stroke-width="1.5" stroke-linecap="round"/>
+          <line x1="3" y1="22" x2="6" y2="22" stroke="white" stroke-width="1.5" stroke-linecap="round"/>
+          <line x1="26" y1="10" x2="29" y2="10" stroke="white" stroke-width="1.5" stroke-linecap="round"/>
+          <line x1="26" y1="16" x2="29" y2="16" stroke="white" stroke-width="1.5" stroke-linecap="round"/>
+          <line x1="26" y1="22" x2="29" y2="22" stroke="white" stroke-width="1.5" stroke-linecap="round"/>
+        </svg>
+      </span>
+      <span class="brand__name">电子信息常用资源</span>
+    </div>
+    <div class="top-bar__tools">
+      <div class="search-box" id="searchBox">
+        <span class="search-box__icon" aria-hidden="true">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="11" cy="11" r="8" /><line x1="21" y1="21" x2="16.65" y2="16.65" />
+          </svg>
+        </span>
+        <label class="sr-only" for="siteSearch">搜索资源</label>
+        <input id="siteSearch" class="search-input" placeholder="搜索站点..." autocomplete="off" />
+        <button type="button" class="search-box__clear" id="searchClear" aria-label="清空搜索">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M18 6 6 18" /><path d="m6 6 12 12" />
+          </svg>
+        </button>
       </div>
-    </header>
+    </div>
+  </header>
 
-    <section class="cover-section">
-      <span class="cover-eyebrow">EE LINKS · 站点导航</span>
-      <h1>电子信息常用网页链接指南</h1>
-      <p class="cover-subtitle">
-        一份面向电子信息学生的常用站点索引，覆盖芯片选型、EDA 工具、竞赛资源和求职准备。
-      </p>
-      <p class="cover-typewriter">
-        <span id="typewriterTarget">当前共整理多个常用站点，按分类整理，可直接跳转使用</span><span class="cover-cursor" aria-hidden="true">|</span>
-      </p>
-      <div class="cover-stats" id="coverStats" aria-hidden="true"></div>
+  <div class="page-wrapper">
+
+    <!-- Hero -->
+    <section class="hero">
+      <div class="hero-card reveal">
+        <div class="hero-badge">
+          <span class="live-dot"></span>
+          EE LINKS · 站点导航
+        </div>
+        <h1 class="hero-title">
+          电子信息常用网页<br><em>链接指南</em>
+        </h1>
+        <p class="hero-subtitle">
+          一份面向电子信息学生的常用站点索引，覆盖芯片选型、EDA 工具、竞赛资源和求职准备。
+        </p>
+        <p class="hero-typewriter">
+          <span id="typewriterTarget">当前共整理多个常用站点，按分类整理，可直接跳转使用</span><span class="hero-cursor" aria-hidden="true">|</span>
+        </p>
+        <div class="cover-stats" id="coverStats" aria-hidden="true"></div>
+      </div>
     </section>
 
     <main>
+      <!-- 筛选栏 -->
       <section class="filter-section" aria-label="按分类筛选">
         <div class="filter-row" id="filterRow">
           <button class="filter-chip active" data-filter="all">全部</button>
@@ -94,7 +118,7 @@
     </main>
 
     <footer class="site-footer">
-      建议收藏常用站点，按自己当前课设、实验、竞赛和求职阶段分批整理。
+      建议收藏常用站点，按自己当前课设、实验、竞赛和求职阶段分批整理。 <span class="heart">♡</span>
     </footer>
 
     <button id="backToTop" class="back-top" aria-label="回到顶部" title="回到顶部">
@@ -104,11 +128,11 @@
     </button>
   </div>
 
-  <script defer src="js/data.js?v=6"></script>
-  <script defer src="js/render.js?v=5"></script>
-  <script defer src="js/filter.js?v=5"></script>
-  <script defer src="js/theme.js?v=5"></script>
-  <script defer src="js/effects.js?v=5"></script>
-  <script defer src="js/main.js?v=5"></script>
+  <script defer src="js/data.js?v=7"></script>
+  <script defer src="js/render.js?v=6"></script>
+  <script defer src="js/filter.js?v=6"></script>
+  <script defer src="js/theme.js?v=6"></script>
+  <script defer src="js/effects.js?v=6"></script>
+  <script defer src="js/main.js?v=6"></script>
 </body>
 </html>
