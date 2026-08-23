@@ -13,11 +13,6 @@
 }
 .masonry > .nav-card--wide { margin-bottom: 24px; }
 
-.nav-card {
-  content-visibility: auto;
-  contain-intrinsic-size: 0 220px;
-}
-
 @media (max-width: 1024px) {
   .masonry { columns: 2; column-gap: 16px; }
   main { padding: 0 24px 100px; }

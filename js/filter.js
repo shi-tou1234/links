@@ -72,7 +72,11 @@ function updateFavoritesCount() {
 }
 
 function setActiveFilter(key) {
-  filterButtons.forEach(b => b.classList.toggle("active", b.dataset.filter === key));
+  filterButtons.forEach(b => {
+    const active = b.dataset.filter === key;
+    b.classList.toggle("active", active);
+    b.setAttribute("aria-pressed", String(active));
+  });
   currentFilter = key;
   applyFilter(currentFilter, siteSearch.value);
 }
@@ -82,12 +86,18 @@ filterButtons.forEach(button => {
   button.addEventListener("click", () => setActiveFilter(button.dataset.filter));
 });
 
+/* 搜索防抖：停止输入 120ms 后再全量重渲染，避免每个按键都重建卡片 */
+let searchDebounceTimer = null;
 siteSearch.addEventListener("input", () => {
   searchBox.classList.toggle("has-value", siteSearch.value.length > 0);
-  applyFilter(currentFilter, siteSearch.value);
+  clearTimeout(searchDebounceTimer);
+  searchDebounceTimer = setTimeout(() => {
+    applyFilter(currentFilter, siteSearch.value);
+  }, 120);
 });
 
 searchClear.addEventListener("click", () => {
+  clearTimeout(searchDebounceTimer);
   siteSearch.value = "";
   searchBox.classList.remove("has-value");
   applyFilter(currentFilter, "");
@@ -95,6 +105,7 @@ searchClear.addEventListener("click", () => {
 });
 
 resetFilter.addEventListener("click", () => {
+  clearTimeout(searchDebounceTimer);
   siteSearch.value = "";
   searchBox.classList.remove("has-value");
   setActiveFilter("all");

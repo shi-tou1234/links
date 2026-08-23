@@ -28,18 +28,26 @@
 
 ```
 ├── index.html          # 主页面
+├── assets/
+│   ├── favicon.svg     # 站点图标
+│   └── fonts/          # 自托管 woff2 字体（拉丁子集，中文走系统字体栈）
 ├── css/
-│   ├── main.css        # @import 入口
-│   ├── base.css        # 基础重置 + 字体 + 无障碍
+│   ├── fonts.css       # 本地 @font-face 声明
+│   ├── base.css        # 基础重置 + 无障碍
 │   ├── layout.css      # 背景 + 导航栏 + Hero + 布局
 │   ├── components.css  # 搜索框 + 筛选 chip + 空状态
-│   ├── cards.css       # 玻璃拟态卡片 + 悬停效果
+│   ├── cards.css       # 玻璃拟态卡片 + 悬停效果 + 入场动画
 │   └── masonry.css     # 瀑布流布局 + 响应式
 └── js/
-    ├── data.js         # 46 个精选站点数据
-    ├── render.js       # 卡片构建 + 骨架屏 + 统计
-    ├── filter.js       # 分类筛选 + 搜索 + 收藏筛选
-    ├── theme.js        # 深色模式初始化
+    ├── data.js         # 站点数据 + 收藏存储（带类型校验与写入降级）
+    ├── render.js       # 卡片构建（整卡拉伸链接 + 独立收藏按钮）+ 骨架屏 + 统计
+    ├── filter.js       # 分类筛选 + 搜索防抖 + 收藏筛选
     ├── effects.js      # 粒子 + 打字机 + 滚动动画
     └── main.js         # 启动编排
 ```
+
+## 说明
+
+- 无第三方网络请求：Google Fonts 已替换为本地 woff2，大陆网络环境直开无阻塞。
+- CSP 通过 meta 限制脚本/样式/字体来源；`file:` 方案用于兼容直接双击打开的场景。
+- 若部署到线上，建议同时配置服务器级安全头（CSP、Referrer-Policy、X-Content-Type-Options）。

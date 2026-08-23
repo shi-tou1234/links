@@ -3,7 +3,6 @@
    <script defer> 已按文档顺序执行并保证 DOM 就绪，这里再加 DOMContentLoaded 保险
    ========================================================================== */
 document.addEventListener("DOMContentLoaded", () => {
-  applyTheme();
   initParticles();
   renderStats();
   initFilterCounts();

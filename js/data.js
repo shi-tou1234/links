@@ -95,43 +95,27 @@ function inferSize(item) {
   return "standard";
 }
 
-/* 主卡节奏：每 7 张插入 1 张 featured，形成视觉锚点 */
-function isFeatured(index) {
-  return index % 7 === 3;
-}
-
-/* 卡片渐变色板 — Aurora 多彩体系 */
-const gradients = [
-  "linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%)",
-  "linear-gradient(135deg, #0ea5e9 0%, #2563eb 100%)",
-  "linear-gradient(135deg, #10b981 0%, #0d9488 100%)",
-  "linear-gradient(135deg, #f59e0b 0%, #f97316 100%)",
-  "linear-gradient(135deg, #f43f5e 0%, #ec4899 100%)",
-  "linear-gradient(135deg, #64748b 0%, #4f46e5 100%)",
-];
-
-function hashColor(str) {
-  let h = 0;
-  for (let i = 0; i < str.length; i++) {
-    h = (h * 31 + str.charCodeAt(i)) | 0;
-  }
-  return gradients[(Math.abs(h) + 7) % gradients.length];
-}
-
 /* 收藏存储键 */
 const FAV_KEY = "ee-guide-favorites";
 
 function getFavorites() {
   try {
     const raw = localStorage.getItem(FAV_KEY);
-    return raw ? JSON.parse(raw) : [];
+    const parsed = raw ? JSON.parse(raw) : [];
+    // 校验为字符串数组，防止存储被污染后 Set/筛选崩溃
+    return Array.isArray(parsed) ? parsed.filter(u => typeof u === "string") : [];
   } catch (e) {
     return [];
   }
 }
 
+/* 写入失败（隐身模式/禁用存储）时静默降级，不打断收藏切换流程 */
 function setFavorites(list) {
-  localStorage.setItem(FAV_KEY, JSON.stringify(list));
+  try {
+    localStorage.setItem(FAV_KEY, JSON.stringify(list));
+  } catch (e) {
+    console.warn("收藏保存失败：localStorage 不可用", e);
+  }
 }
 
 /* 暴露到全局（按规范使用大写 LINKS，同时保留小写 links 兼容） */
@@ -140,9 +124,6 @@ window.LINKS = links;
 window.TAG_LABELS = TAG_LABELS;
 window.uniqueLinks = uniqueLinks;
 window.inferSize = inferSize;
-window.isFeatured = isFeatured;
-window.gradients = gradients;
-window.hashColor = hashColor;
 window.FAV_KEY = FAV_KEY;
 window.getFavorites = getFavorites;
 window.setFavorites = setFavorites;

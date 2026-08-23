@@ -87,8 +87,6 @@
   border-radius: 999px;
   padding: 7px 15px;
   cursor: pointer;
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
   transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
 }
 .filter-chip:hover {

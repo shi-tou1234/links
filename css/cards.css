@@ -14,9 +14,9 @@
   text-decoration: none;
   cursor: pointer;
   color: #fff;
-  background: rgba(255, 255, 255, 0.07);
-  backdrop-filter: blur(20px) saturate(140%);
-  -webkit-backdrop-filter: blur(20px) saturate(140%);
+  background: rgba(255, 255, 255, 0.09);
+  backdrop-filter: blur(12px) saturate(140%);
+  -webkit-backdrop-filter: blur(12px) saturate(140%);
   border: 1px solid rgba(255, 255, 255, 0.14);
   box-shadow:
     0 8px 32px rgba(0, 0, 0, 0.2),
@@ -24,8 +24,7 @@
   transform: translate3d(0, 0, 0);
   transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1),
               box-shadow 0.5s cubic-bezier(0.16, 1, 0.3, 1),
-              border-color 0.3s ease,
-              opacity 0.4s ease;
+              border-color 0.3s ease;
 }
 
 /* 悬停渐变高光 */
@@ -91,8 +90,6 @@
   text-shadow: 0 1px 3px rgba(0, 0, 0, 0.22);
   background: rgba(255, 255, 255, 0.16);
   border: 1px solid rgba(255, 255, 255, 0.3);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.2);
   transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s ease;
   flex-shrink: 0;
@@ -194,8 +191,6 @@
   opacity: 1;
   transform: scale(1);
   transition: opacity 0.25s ease, transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), color 0.2s ease, background 0.2s ease;
-  backdrop-filter: blur(6px);
-  -webkit-backdrop-filter: blur(6px);
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 .nav-card__fav:hover { color: #f59e0b; background: rgba(255, 200, 50, 0.15); }
@@ -223,19 +218,45 @@
   z-index: 1;
 }
 .nav-card:hover .nav-card__sheen { transform: translateX(110%); }
-.nav-card > * { position: relative; z-index: 2; }
-.nav-card > .nav-card__sheen { z-index: 1; }
-.nav-card > .nav-card__fav { z-index: 4; }
+/* 内容子项抬到光泽层之上；定位类子项（link/sheen/fav）的定位由各自规则声明，不在此覆盖 */
+.nav-card > .nav-card__head,
+.nav-card > .nav-card__name,
+.nav-card > .nav-card__desc,
+.nav-card > .nav-card__tags {
+  position: relative;
+  z-index: 2;
+}
 
-/* ---------- Scroll-reveal ---------- */
-.nav-card.post-card-reveal {
-  opacity: 0;
-  transform: translate3d(0, 26px, 0) scale(0.98);
+/* ---------- Scroll-reveal ----------
+   用 animation 而非 transition 做入场：
+   1) 动画结束后不保留 fill，transform 回到层叠默认值 → hover 上浮正常触发；
+   2) animation-delay 只作用于动画本身，不会拖慢 hover 的过渡；
+   3) 隐藏态用 :where() 归零特异性，避免压过任何交互态规则 */
+:where(.nav-card.post-card-reveal:not(.is-visible)) { opacity: 0; }
+@keyframes card-reveal {
+  from { opacity: 0; transform: translate3d(0, 26px, 0) scale(0.98); }
 }
 .nav-card.post-card-reveal.is-visible {
-  opacity: 1;
-  transform: translateY(0) scale(1);
-  transition-delay: var(--card-reveal-delay, 0ms);
+  animation: card-reveal 0.6s cubic-bezier(0.16, 1, 0.3, 1) backwards;
+  animation-delay: var(--card-reveal-delay, 0ms);
+}
+
+/* ---------- 整卡拉伸链接（收藏按钮的兄弟节点，覆盖整卡可点击区） ---------- */
+.nav-card__link {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  border-radius: inherit;
+  outline-offset: -2px;
+}
+
+/* ---------- 移动端：去掉逐卡实时模糊，用更实的底色保持玻璃观感 ---------- */
+@media (max-width: 768px) {
+  .nav-card {
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+    background: rgba(24, 17, 44, 0.62);
+  }
 }
 
 /* ---------- 骨架屏 ---------- */
@@ -247,9 +268,7 @@
   flex-direction: column;
   gap: 10px;
   overflow: hidden;
-  background: rgba(255, 255, 255, 0.06);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
+  background: rgba(255, 255, 255, 0.09);
   border: 1px solid rgba(255, 255, 255, 0.12);
 }
 .skeleton-card::before {

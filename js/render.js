@@ -38,25 +38,29 @@ function createFavButton(isFav) {
   return favBtn;
 }
 
-/* ===== 单卡构建：统一整卡渐变（截图中 featured 风格） ===== */
+/* ===== 单卡构建：div 卡片 + 整卡拉伸链接 + 独立收藏按钮（合法 HTML 嵌套） ===== */
 function buildCard(item, index) {
   const size = inferSize(item);
-  const gradient = item.color || hashColor(item.url);
-  const favorites = getFavorites();
-  const isFav = favorites.includes(item.url);
+  const isFav = getFavorites().includes(item.url);
 
-  const card = document.createElement("a");
-  card.href = item.url;
-  card.target = "_blank";
-  card.rel = "noopener noreferrer";
-  card.className = `nav-card nav-card--gradient nav-card--${size} post-card-reveal`;
+  const card = document.createElement("div");
+  card.className = `nav-card nav-card--${size} post-card-reveal`;
   card.setAttribute("data-card-reveal", "");
   card.style.setProperty("--card-reveal-delay", `${Math.min(index, 12) * 50}ms`);
   // will-change 仅在 hover 时临时启用
   card.addEventListener("mouseenter", () => { card.style.willChange = "transform, box-shadow"; });
   card.addEventListener("mouseleave", () => { card.style.willChange = ""; });
 
-  // 收藏按钮（固定显示）
+  // 拉伸链接：绝对定位覆盖整卡，键盘/读屏用户可单独聚焦
+  const link = document.createElement("a");
+  link.className = "nav-card__link";
+  link.href = item.url;
+  link.target = "_blank";
+  link.rel = "noopener noreferrer";
+  link.setAttribute("aria-label", `访问 ${item.name}（新标签页打开）`);
+  card.appendChild(link);
+
+  // 收藏按钮：与链接平级，不再嵌套在 <a> 内
   const favBtn = createFavButton(isFav);
   favBtn.addEventListener("click", (e) => {
     e.preventDefault();

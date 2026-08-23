@@ -85,6 +85,11 @@ let charIndex = 0;
 let isDeleting = false;
 
 function typeWriter() {
+  // 后台标签页暂停打字，回到前台继续，省电且避免定时器堆积
+  if (document.hidden) {
+    setTimeout(typeWriter, 400);
+    return;
+  }
   const current = typewriterTexts[phraseIndex % typewriterTexts.length];
   if (!isDeleting) {
     typewriterTarget.textContent = current.slice(0, charIndex + 1);
@@ -105,8 +110,9 @@ function typeWriter() {
 }
 
 /* ===== Scroll-triggered card reveal（去 blur，仅 opacity + transform） ===== */
+let revealObserver = null;
 function initPostCardReveal() {
-  const cards = Array.from(document.querySelectorAll("[data-card-reveal]"));
+  const cards = document.querySelectorAll("[data-card-reveal]");
   if (cards.length === 0) return;
 
   const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
@@ -118,7 +124,9 @@ function initPostCardReveal() {
     return;
   }
 
-  const observer = new IntersectionObserver(
+  // 复用同一个 Observer：先断开旧监听，避免反复筛选时累积泄漏
+  if (revealObserver) revealObserver.disconnect();
+  revealObserver = new IntersectionObserver(
     (entries, currentObserver) => {
       entries.forEach(entry => {
         if (!entry.isIntersecting) return;
@@ -129,17 +137,7 @@ function initPostCardReveal() {
     { root: null, rootMargin: "0px 0px -4% 0px", threshold: 0.01 },
   );
 
-  cards.forEach(card => observer.observe(card));
-
-  // 兜底：content-visibility: auto 可能导致 IntersectionObserver 不触发，
-  // 800ms 后对仍未可见的卡片强制 add is-visible
-  setTimeout(() => {
-    cards.forEach(card => {
-      if (!card.classList.contains("is-visible")) {
-        card.classList.add("is-visible");
-      }
-    });
-  }, 800);
+  cards.forEach(card => revealObserver.observe(card));
 }
 
 /* ===== 回到顶部（rAF 节流） ===== */

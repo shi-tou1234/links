@@ -3,11 +3,20 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' file:; style-src 'self' file: 'unsafe-inline'; img-src 'self' file: data:; font-src 'self' file:; object-src 'none'; base-uri 'none'; form-action 'none'" />
+  <meta name="referrer" content="strict-origin-when-cross-origin" />
+  <meta name="description" content="面向电子信息学生的常用站点索引：芯片选型、Datasheet、EDA 工具、PCB 打样、课程学习、竞赛与求职资源导航。" />
+  <meta name="theme-color" content="#080414" />
+  <meta name="color-scheme" content="dark" />
   <title>电子信息常用网页链接指南</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&family=Noto+Sans+SC:wght@400;500;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="css/main.css?v=8" />
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg" />
+  <!-- 字体已自托管（拉丁子集），中文走系统字体栈，无第三方请求 -->
+  <link rel="stylesheet" href="css/fonts.css?v=9" />
+  <link rel="stylesheet" href="css/base.css?v=9" />
+  <link rel="stylesheet" href="css/layout.css?v=9" />
+  <link rel="stylesheet" href="css/components.css?v=9" />
+  <link rel="stylesheet" href="css/cards.css?v=9" />
+  <link rel="stylesheet" href="css/masonry.css?v=9" />
 </head>
 <body>
 
@@ -49,7 +58,7 @@
           </svg>
         </span>
         <label class="sr-only" for="siteSearch">搜索资源</label>
-        <input id="siteSearch" class="search-input" placeholder="搜索站点..." autocomplete="off" />
+        <input id="siteSearch" class="search-input" type="search" placeholder="搜索站点..." autocomplete="off" />
         <button type="button" class="search-box__clear" id="searchClear" aria-label="清空搜索">
           <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
             <path d="M18 6 6 18" /><path d="m6 6 12 12" />
@@ -75,7 +84,7 @@
           一份面向电子信息学生的常用站点索引，覆盖芯片选型、EDA 工具、竞赛资源和求职准备。
         </p>
         <p class="hero-typewriter">
-          <span id="typewriterTarget">当前共整理多个常用站点，按分类整理，可直接跳转使用</span><span class="hero-cursor" aria-hidden="true">|</span>
+          <span id="typewriterTarget"></span><span class="hero-cursor" aria-hidden="true">|</span>
         </p>
         <div class="cover-stats" id="coverStats" aria-hidden="true"></div>
       </div>
@@ -85,16 +94,16 @@
       <!-- 筛选栏 -->
       <section class="filter-section" aria-label="按分类筛选">
         <div class="filter-row" id="filterRow">
-          <button class="filter-chip active" data-filter="all">全部</button>
-          <button class="filter-chip" data-filter="components">买件/常用商城</button>
-          <button class="filter-chip" data-filter="datasheet">Datasheet/型号</button>
-          <button class="filter-chip" data-filter="pcb">原理图/PCB/开源硬件</button>
-          <button class="filter-chip" data-filter="learn">学习/课程/视频</button>
-          <button class="filter-chip" data-filter="tools">EDA/仿真/软件工具</button>
-          <button class="filter-chip" data-filter="community">社区/博客/资讯</button>
-          <button class="filter-chip" data-filter="competition">竞赛/实验室/作品</button>
-          <button class="filter-chip" data-filter="job">考研/求职/技能</button>
-          <button class="filter-chip" data-filter="favorites">★ 收藏</button>
+          <button class="filter-chip active" data-filter="all" aria-pressed="true">全部</button>
+          <button class="filter-chip" data-filter="components" aria-pressed="false">买件/常用商城</button>
+          <button class="filter-chip" data-filter="datasheet" aria-pressed="false">Datasheet/型号</button>
+          <button class="filter-chip" data-filter="pcb" aria-pressed="false">原理图/PCB/开源硬件</button>
+          <button class="filter-chip" data-filter="learn" aria-pressed="false">学习/课程/视频</button>
+          <button class="filter-chip" data-filter="tools" aria-pressed="false">EDA/仿真/软件工具</button>
+          <button class="filter-chip" data-filter="community" aria-pressed="false">社区/博客/资讯</button>
+          <button class="filter-chip" data-filter="competition" aria-pressed="false">竞赛/实验室/作品</button>
+          <button class="filter-chip" data-filter="job" aria-pressed="false">考研/求职/技能</button>
+          <button class="filter-chip" data-filter="favorites" aria-pressed="false">★ 收藏</button>
         </div>
       </section>
 
@@ -128,11 +137,10 @@
     </button>
   </div>
 
-  <script defer src="js/data.js?v=7"></script>
-  <script defer src="js/render.js?v=6"></script>
-  <script defer src="js/filter.js?v=6"></script>
-  <script defer src="js/theme.js?v=6"></script>
-  <script defer src="js/effects.js?v=6"></script>
-  <script defer src="js/main.js?v=6"></script>
+  <script defer src="js/data.js?v=9"></script>
+  <script defer src="js/render.js?v=9"></script>
+  <script defer src="js/filter.js?v=9"></script>
+  <script defer src="js/effects.js?v=9"></script>
+  <script defer src="js/main.js?v=9"></script>
 </body>
 </html>
