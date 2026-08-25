@@ -225,6 +225,7 @@
 .nav-card > .nav-card__tags {
   position: relative;
   z-index: 2;
+  pointer-events: none; /* 让点击穿透到整卡拉伸链接（.nav-card__link） */
 }
 
 /* ---------- Scroll-reveal ----------
